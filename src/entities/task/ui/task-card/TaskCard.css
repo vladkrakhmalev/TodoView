@@ -1,0 +1,12 @@
+.task-card {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 3px 5px;
+  position: absolute;
+  font-size: 14px;
+  margin: 2px;
+  user-select: none;
+  height: auto;
+  white-space: nowrap;
+  overflow: hidden;
+}
