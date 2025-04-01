@@ -1,0 +1,24 @@
+.calendar-columns {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto repeat(7, 1fr);
+  position: relative;
+  overflow-x: hidden !important;
+}
+
+.calendar-columns__loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #fffc;
+  transition: .3s;
+  z-index: -1;
+  opacity: 0;
+}
+
+.calendar-columns__loader._active {
+  z-index: 10;
+  opacity: 1;
+}

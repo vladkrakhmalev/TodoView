@@ -1,0 +1,11 @@
+.calendar-header {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+}
+
+.calendar-header__arrows {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr;
+}
