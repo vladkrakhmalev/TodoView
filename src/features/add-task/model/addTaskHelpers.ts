@@ -12,12 +12,12 @@ export const convertForm = ({ date, time, ...rest }: IAddTaskForm): AddTaskArgs 
   return newTask
 }
 
-export const getTopByСoordinates = (event: MouseEvent<HTMLDivElement>, parrentTop: number, dimensions: IDimensions): number => {
-  return (Math.floor((event.pageY - parrentTop) / dimensions.height * 2) / 2) * dimensions.height
+export const getTopByСoordinates = (event: MouseEvent<HTMLDivElement>, dimensions: IDimensions): number => {
+  return (Math.floor((event.nativeEvent.offsetY) / dimensions.height * 2) / 2) * dimensions.height
 }
 
-export const getTimeByСoordinates = (event: MouseEvent<HTMLDivElement>, parrentTop: number, dimensions: IDimensions): string => {
-  const coef = Math.floor((event.pageY - parrentTop) / dimensions.height * 2) / 2
+export const getTimeByСoordinates = (event: MouseEvent<HTMLDivElement>, dimensions: IDimensions): string => {
+  const coef = Math.floor((event.nativeEvent.offsetY) / dimensions.height * 2) / 2
   const hours = Math.floor(coef)
   const minutes = Math.round((coef - hours) * 60)
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`

@@ -1,4 +1,4 @@
-import { FC, useMemo, useRef } from 'react';
+import { FC, useMemo } from 'react';
 import './CalendarColumns.css'
 import { CalendarColumnTime } from '../calendar-column-time/CalendarColumnTime';
 import { convertAndGroupTasks, useTasks } from '@entities/task';
@@ -21,10 +21,8 @@ export const CalendarColumns: FC = () => {
   const tasks = useMemo(() => data?.results || [], [data])
   const days = useMemo(() => convertAndGroupTasks(tasks, dimensions), [tasks, dimensions])
 
-  const columnsRef = useRef<HTMLDivElement | null>(null)
-
   return (
-    <div className="calendar-columns" ref={columnsRef}>
+    <div className="calendar-columns">
       <div className={clsx("calendar-columns__loader", isLoading && "_active")}></div>
 
       <CalendarColumnTime timeRef={timeRef}/>
@@ -35,7 +33,6 @@ export const CalendarColumns: FC = () => {
           tasks={tasks}
           date={weekDays[idx].format("YYYY-MM-DD")}
           dimensions={dimensions}
-          parentTop={columnsRef.current?.offsetTop}
           columnRef={columnRef}
         />
       ))}

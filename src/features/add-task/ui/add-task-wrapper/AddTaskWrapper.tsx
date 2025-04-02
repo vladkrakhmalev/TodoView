@@ -8,17 +8,16 @@ import { IAddTaskForm } from '../../model/addTask';
 
 interface IProps {
   date: string
-  dimensions: IDimensions,
-  parrentTop?: number
+  dimensions: IDimensions
 }
 
-export const AddTaskWrapper: FC<IProps> = ({ date, dimensions, parrentTop = 0 }) => {
+export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
   const [newTask, setNewTask] = useState<ITask | null>(null)
   const [defaultForm, setDefaultForm] = useState<Partial<IAddTaskForm>>({ date })
 
   const handlerClick = (event: MouseEvent<HTMLDivElement>) => {
-    const _top = getTopByСoordinates(event, parrentTop, dimensions)
-    const time = getTimeByСoordinates(event, parrentTop, dimensions)
+    const _top = getTopByСoordinates(event, dimensions)
+    const time = getTimeByСoordinates(event, dimensions)
     setDefaultForm(defaultForm => ({ ...defaultForm, time }))
     // TODO Исправить TS проблему
     setNewTask({ content: 'Введите название', _top, _width: dimensions.width })
