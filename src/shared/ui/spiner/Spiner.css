@@ -9,6 +9,7 @@
 
 .spiner._contrast {
   border-color: var(--text-contrast);
+  border-bottom-color: transparent;
 }
 
 @keyframes rotation {
