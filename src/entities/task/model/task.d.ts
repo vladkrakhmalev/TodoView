@@ -4,3 +4,9 @@ export interface ITask extends Task {
   _top: number
   _width: number
 }
+
+export interface IEmptyTask {
+  content: string
+  _top: number
+  _width: number
+}

@@ -1,9 +1,10 @@
 import { FC, useMemo } from 'react';
 import './TaskCard.css'
-import { ITask } from '@entities/task';
+import { ITask, IEmptyTask } from '@entities/task/model/task';
 
 interface IProps {
-  task: ITask
+  task: ITask | IEmptyTask
+  isEmpty?: boolean
 }
 
 export const TaskCard: FC<IProps> = ({ task }) => {
