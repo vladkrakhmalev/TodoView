@@ -1,0 +1,29 @@
+.complete-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.complete-task:hover {
+  cursor: pointer;
+  background: var(--bg-secondary-hover);
+}
+
+.complete-task__check {
+  line-height: 1;
+  font-size: 10px;
+  margin-top: 3px;
+  opacity: 0;
+  transition: .2s;
+}
+
+.complete-task._complete .complete-task__check {
+  opacity: 1;
+}

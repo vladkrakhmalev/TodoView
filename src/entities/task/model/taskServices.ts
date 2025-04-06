@@ -12,11 +12,16 @@ export const useTasks = (filter?: string) => {
 
 export const useAddTask = () => {
   const queryClient = useQueryClient()
-
   return useMutation({
     mutationFn: (task: AddTaskArgs) => todoistApi.addTask(task),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['tasks'] })
-    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] })
+  })
+}
+
+export const useCompleteTask = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => todoistApi.closeTask(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   })
 }
