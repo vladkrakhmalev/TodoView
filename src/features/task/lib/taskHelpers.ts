@@ -1,5 +1,5 @@
 import { AddTaskArgs } from "@doist/todoist-api-typescript"
-import { IAddTaskForm } from "./addTask"
+import { IAddTaskForm } from "./task"
 import { MouseEvent } from "react"
 import { IDimensions } from "@shared/types"
 

@@ -2,9 +2,9 @@ import { FC, MouseEvent, useState } from 'react';
 import './AddTaskWrapper.css'
 import { TaskCard, IEmptyTask } from '@entities/task';
 import { IDimensions } from '@shared/types';
-import { AddTaskFormModal } from '../add-task-form-modal';
-import { getTopByСoordinates, getTimeByСoordinates } from '../../model/addTaskHelpers';
-import { IAddTaskForm } from '../../model/addTask';
+import { TaskForm } from '../task-form/TaskForm';
+import { getTopByСoordinates, getTimeByСoordinates } from '../../lib/taskHelpers';
+import { IAddTaskForm } from '../../model/task';
 
 interface IProps {
   date: string
@@ -29,7 +29,7 @@ export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
   )
 
   return (
-    <AddTaskFormModal
+    <TaskForm
       defaultForm={defaultForm}
       trigger={trigger}
       onClose={() => setNewTask(null)}

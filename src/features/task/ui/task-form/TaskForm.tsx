@@ -1,10 +1,10 @@
 import { FC, FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
-import './AddTaskFormModal.css'
+import './TaskForm.css'
 import { Modal } from '@shared/ui/modal';
 import { Button } from '@shared/ui/button';
 import { Input } from '@shared/ui/input';
-import { IAddTaskForm } from '../../model/addTask';
-import { convertForm } from '../../model/addTaskHelpers';
+import { IAddTaskForm } from '../../model/task';
+import { convertForm } from '../../lib/taskHelpers';
 import { useAddTask } from '@entities/task';
 
 interface IProps {
@@ -19,7 +19,7 @@ const initialForm: IAddTaskForm = {
   time: ''
 }
 
-export const AddTaskFormModal: FC<IProps> = ({ trigger, defaultForm, onClose }) => {
+export const TaskForm: FC<IProps> = ({ trigger, defaultForm, onClose }) => {
   const { mutateAsync: addTask, isPending } = useAddTask()
   const [form, setForm] = useState<IAddTaskForm>({ ...initialForm, ...defaultForm })
 
@@ -49,8 +49,8 @@ export const AddTaskFormModal: FC<IProps> = ({ trigger, defaultForm, onClose }) 
 
   return (
     <Modal trigger={trigger} wrapperRef={modalRef} onOpen={() => firstInput.current?.focus()} onClose={handlerClose}>
-      <form className='add-task-form-modal' onSubmit={handlerSubmit}>
-        <p className='add-task-form-modal__title'>Добавить задачу</p>
+      <form className='task-form' onSubmit={handlerSubmit}>
+        <p className='task-form__title'>Добавить задачу</p>
 
         <Input
           value={form.content}

@@ -2,8 +2,7 @@ import { FC } from 'react';
 import './CalendarColumn.css'
 import { ITask, TaskCard } from '@entities/task';
 import { IDimensions } from '@shared/types';
-import { AddTaskWrapper } from '@features/add-task';
-import { CompleteTask } from '@features/complete-task';
+import { AddTaskWrapper, CompleteTaskButton } from '@features/task';
 
 interface IProps {
   tasks: ITask[]
@@ -21,7 +20,7 @@ export const CalendarColumn: FC<IProps> = ({ tasks, date, dimensions, columnRef 
         <TaskCard
           key={task.id}
           task={task}
-          completeTask={<CompleteTask taskId={task.id}/>}
+          completeTask={<CompleteTaskButton taskId={task.id}/>}
         />
       ))}
     </div>

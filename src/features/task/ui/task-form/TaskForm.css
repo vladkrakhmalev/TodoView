@@ -1,14 +1,14 @@
-.add-task-form-modal {
+.task-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px 10px;
 }
 
-.add-task-form-modal > *:not(._short) {
+.task-form > *:not(._short) {
   grid-column: 1/-1;
 }
 
-.add-task-form-modal__title {
+.task-form__title {
   font-size: 24px;
   font-weight: bold;
 }
