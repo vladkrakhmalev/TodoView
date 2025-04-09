@@ -1,10 +1,11 @@
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useRef, useState } from 'react';
 import './AddTaskWrapper.css'
-import { TaskCard, IEmptyTask } from '@entities/task';
+import { TaskCard, IEmptyTask, useAddTask } from '@entities/task';
 import { IDimensions } from '@shared/types';
 import { TaskForm } from '../task-form/TaskForm';
-import { getTopByСoordinates, getTimeByСoordinates } from '../../lib/taskHelpers';
-import { IAddTaskForm } from '../../model/task';
+import { getTopByСoordinates, getTimeByСoordinates, convertFormToTask } from '../../lib/taskHelpers';
+import { ITaskForm } from '../../model/task';
+import { Modal } from '@shared/ui/modal';
 
 interface IProps {
   date: string
@@ -12,27 +13,48 @@ interface IProps {
 }
 
 export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
-  const [newTask, setNewTask] = useState<IEmptyTask | null>(null)
-  const [defaultForm, setDefaultForm] = useState<Partial<IAddTaskForm>>({ date })
+  const { mutateAsync: addTask, isPending } = useAddTask()
 
-  const handlerClick = (event: MouseEvent<HTMLDivElement>) => {
+  const [defaultForm, setDefaultForm] = useState<Partial<ITaskForm>>({ date })
+  const [newTask, setNewTask] = useState<IEmptyTask | null>(null)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const firstInputRef = useRef<HTMLInputElement>(null)
+
+  const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
     const _top = getTopByСoordinates(event, dimensions)
     const time = getTimeByСoordinates(event, dimensions)
     setDefaultForm(defaultForm => ({ ...defaultForm, time }))
     setNewTask({ content: 'Новая задача', _top, _width: dimensions.width })
+    setIsOpen(true)
+    firstInputRef.current?.focus()
   }
 
-  const trigger = (
-    <div className='add-task-wrapper' onClick={handlerClick}>
+  const handlerClose = () => {
+    setDefaultForm({ date })
+    setNewTask(null)
+    setIsOpen(false)
+  }
+
+  const handlerSubmit = async (form: ITaskForm) => {
+    const newTask = convertFormToTask(form)
+    await addTask(newTask)
+    handlerClose()
+  }
+
+  return (<>
+    <div className='add-task-wrapper' onClick={handlerOpen}>
       {newTask && <TaskCard task={newTask} isEmpty={true}/>}
     </div>
-  )
 
-  return (
-    <TaskForm
-      defaultForm={defaultForm}
-      trigger={trigger}
-      onClose={() => setNewTask(null)}
-    />
-  )
+    <Modal isOpen={isOpen} onClose={handlerClose}>
+      <TaskForm
+        title='Добавить задачу'
+        defaultForm={defaultForm}
+        firstInputRef={firstInputRef}
+        isLoading={isPending}
+        onSubmit={handlerSubmit}
+      />
+    </Modal>
+  </>)
 };

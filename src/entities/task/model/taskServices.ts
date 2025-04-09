@@ -1,6 +1,7 @@
 import { AddTaskArgs } from "@doist/todoist-api-typescript"
 import { todoistApi } from "@shared/config/todoist"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { IUpdateTask } from "./taskServices.d"
 
 export const useTasks = (filter?: string) => {
   return useQuery({
@@ -22,6 +23,14 @@ export const useCompleteTask = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: (id: string) => todoistApi.closeTask(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+  })
+}
+
+export const useUpdateTask = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({id, data}: IUpdateTask) => todoistApi.updateTask(id, data),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   })
 }

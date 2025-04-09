@@ -1,12 +1,4 @@
 .modal {
-  height: 100%;
-}
-
-.modal__trigger {
-  height: 100%;
-}
-
-.modal__wrapper {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,12 +14,12 @@
   opacity: 0;
 }
 
-.modal__wrapper._open {
+.modal._open {
   z-index: 10;
   opacity: 1;
 }
 
-.modal__wrapper._right {
+.modal._right {
   padding: 0;
   justify-content: end;
 }
@@ -44,12 +36,12 @@
   opacity: 0;
 }
 
-.modal__wrapper._open .modal__container {
+.modal._open .modal__container {
   transform: scale(1);
   opacity: 1;
 }
 
-.modal__wrapper._right .modal__container {
+.modal._right .modal__container {
   height: 100%;
   border-radius: 0;
 }
@@ -67,7 +59,7 @@
   opacity: .7;
 }
 
-.modal__wrapper._right .modal__close {
+.modal._right .modal__close {
   top: 20px;
   right: 20px;
   font-size: 25px;

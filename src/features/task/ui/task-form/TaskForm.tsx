@@ -1,81 +1,67 @@
-import { FC, FormEvent, ReactNode, useEffect, useRef, useState } from 'react';
+import { FC, FormEvent, useEffect, useState } from 'react';
 import './TaskForm.css'
-import { Modal } from '@shared/ui/modal';
 import { Button } from '@shared/ui/button';
 import { Input } from '@shared/ui/input';
-import { IAddTaskForm } from '../../model/task';
-import { convertForm } from '../../lib/taskHelpers';
-import { useAddTask } from '@entities/task';
+import { ITaskForm } from '../../model/task';
 
 interface IProps {
-  trigger: ReactNode
-  defaultForm?: Partial<IAddTaskForm>
-  onClose?: () => void
+  title: string
+  defaultForm?: Partial<ITaskForm>
+  firstInputRef: React.RefObject<HTMLInputElement | null>
+  isLoading: boolean
+  onSubmit: (form: ITaskForm) => void
 }
 
-const initialForm: IAddTaskForm = {
+const initialForm: ITaskForm = {
   content: '',
   date: '',
   time: ''
 }
 
-export const TaskForm: FC<IProps> = ({ trigger, defaultForm, onClose }) => {
-  const { mutateAsync: addTask, isPending } = useAddTask()
-  const [form, setForm] = useState<IAddTaskForm>({ ...initialForm, ...defaultForm })
+export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoading, onSubmit }) => {
+  
+  const [form, setForm] = useState<ITaskForm>({ ...initialForm, ...defaultForm })
 
-  const modalRef = useRef<HTMLDivElement>(null)
-  const firstInput = useRef<HTMLInputElement>(null)
-
-  const handlerChange = (value: string, field: keyof IAddTaskForm) => {
+  const handlerChange = (value: string, field: keyof ITaskForm) => {
     setForm({...form, [field]: value})
-  }
-
-  const handlerClose = () => {
-    setForm({ ...initialForm, ...defaultForm })
-    if (modalRef.current) modalRef.current.click()
-    if (onClose) onClose()
   }
 
   const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const newTask = convertForm(form)
-    await addTask(newTask)
-    handlerClose()
+    onSubmit(form)
   }
 
   useEffect(() => {
-    setForm(prev => ({ ...prev, ...defaultForm }))
+    setForm({ ...initialForm, ...defaultForm })
   }, [defaultForm])
 
   return (
-    <Modal trigger={trigger} wrapperRef={modalRef} onOpen={() => firstInput.current?.focus()} onClose={handlerClose}>
-      <form className='task-form' onSubmit={handlerSubmit}>
-        <p className='task-form__title'>Добавить задачу</p>
+    <form className='task-form' onSubmit={handlerSubmit}>
+      <p className='task-form__title'>{title}</p>
 
-        <Input
-          value={form.content}
-          inputRef={firstInput}
-          required
-          placeholder='Название'
-          onUpdate={(value) => handlerChange(value, 'content')}
-        />
+      <Input
+        inputRef={firstInputRef}
+        value={form.content}
+        required
+        placeholder='Название'
+        onUpdate={(value) => handlerChange(value, 'content')}
+      />
 
-        <Input
-          value={form.date}
-          type='date'
-          className='_short'
-          onUpdate={(value) => handlerChange(value, 'date')}
-        />
+      <Input
+        value={form.date}
+        type='date'
+        className='_short'
+        onUpdate={(value) => handlerChange(value, 'date')}
+      />
 
-        <Input
-          value={form.time}
-          type='time'
-          className='_short'
-          onUpdate={(value) => handlerChange(value, 'time')}
-        />
+      <Input
+        value={form.time}
+        type='time'
+        className='_short'
+        onUpdate={(value) => handlerChange(value, 'time')}
+      />
 
-        <Button isLoading={isPending} fullWidth variant='primary'>Добавить</Button>
-      </form>
-    </Modal>
+      <Button isLoading={isLoading} fullWidth variant='primary'>Сохранить</Button>
+    </form>
   );
 };

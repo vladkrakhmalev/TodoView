@@ -1,15 +1,22 @@
 import { AddTaskArgs } from "@doist/todoist-api-typescript"
-import { IAddTaskForm } from "./task"
+import { ITaskForm } from "../model/task"
 import { MouseEvent } from "react"
 import { IDimensions } from "@shared/types"
+import { ITask } from "@entities/task"
+import { convertTime } from "@shared/lib/converters"
 
-export const convertForm = ({ date, time, ...rest }: IAddTaskForm): AddTaskArgs => {
-  const newTask = { due_string: '', ...rest, }
+export const convertFormToTask = ({ date, time, ...rest }: ITaskForm): AddTaskArgs => {
+  const task = { due_string: '', ...rest, }
+  if (date) task.due_string += date
+  if (time) task.due_string += ` в ${time}`
+  return task
+}
 
-  if (date) newTask.due_string += date
-  if (time) newTask.due_string += ` в ${time}`
-
-  return newTask
+export const convertTaskToForm = (task: ITask): ITaskForm => {
+  const { content, due } = task
+  const date = due?.date || ''
+  const time = due?.datetime ? convertTime(due.datetime) : ''
+  return { content, date, time }
 }
 
 export const getTopByСoordinates = (event: MouseEvent<HTMLDivElement>, dimensions: IDimensions): number => {

@@ -1,4 +1,4 @@
-export interface IAddTaskForm {
+export interface ITaskForm {
   content: string
   date?: string
   time?: string
