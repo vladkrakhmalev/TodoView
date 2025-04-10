@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import './CompleteTaskButton.css'
 import { useCompleteTask } from '@entities/task';
 import clsx from 'clsx';
@@ -11,7 +11,8 @@ export const CompleteTaskButton: FC<IProps> = ({ taskId }) => {
   const { mutate: completeTask } = useCompleteTask()
   const [isComplete, setIsComplete] = useState(false)
 
-  const handlerComplete = () => {
+  const handlerComplete = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
     completeTask(taskId)
     setIsComplete(true)
   }
