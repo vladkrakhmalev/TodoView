@@ -15,7 +15,8 @@ interface IProps {
 const initialForm: ITaskForm = {
   content: '',
   date: '',
-  time: ''
+  timeStart: '',
+  timeEnd: '',
 }
 
 export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoading, onSubmit }) => {
@@ -50,15 +51,21 @@ export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoad
       <Input
         value={form.date}
         type='date'
-        className='_short'
         onUpdate={(value) => handlerChange(value, 'date')}
       />
 
       <Input
-        value={form.time}
+        value={form.timeStart}
         type='time'
         className='_short'
-        onUpdate={(value) => handlerChange(value, 'time')}
+        onUpdate={(value) => handlerChange(value, 'timeStart')}
+      />
+
+      <Input
+        value={form.timeEnd}
+        type='time'
+        className='_short'
+        onUpdate={(value) => handlerChange(value, 'timeEnd')}
       />
 
       <Button isLoading={isLoading} fullWidth variant='primary'>Сохранить</Button>

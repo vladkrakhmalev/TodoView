@@ -23,9 +23,9 @@ export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
 
   const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
     const _top = getTopByСoordinates(event, dimensions)
-    const time = getTimeByСoordinates(event, dimensions)
-    setDefaultForm(defaultForm => ({ ...defaultForm, time }))
-    setNewTask({ content: 'Новая задача', _top, _width: dimensions.width })
+    const timeStart = getTimeByСoordinates(event, dimensions)
+    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart }))
+    setNewTask({ content: 'Новая задача', _top, _height: dimensions.height / 2, _width: dimensions.width })
     setIsOpen(true)
     firstInputRef.current?.focus()
   }

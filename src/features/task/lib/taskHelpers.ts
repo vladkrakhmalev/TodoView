@@ -3,21 +3,31 @@ import { ITaskForm } from "../model/task"
 import { MouseEvent } from "react"
 import { IDimensions } from "@shared/types"
 import { ITask } from "@entities/task"
-import { convertTime } from "@shared/lib/converters"
+import { getDueString, getDuration, getTimeByDuration, getTimeByString } from "@shared/lib/time"
 
-export const convertFormToTask = ({ date, time, ...rest }: ITaskForm): AddTaskArgs => {
-  const task = { due_string: '', ...rest, }
-  if (date) task.due_string += date
-  if (time) task.due_string += ` в ${time}`
-  return task
+export const convertFormToTask = (form: ITaskForm): AddTaskArgs => {
+  const { date, timeStart, timeEnd, ...rest } = form
+
+  return {
+    dueString: getDueString(date, timeStart),
+    duration: getDuration(timeStart, timeEnd),
+    durationUnit: 'minute',
+    ...rest
+  }
 }
 
 export const convertTaskToForm = (task: ITask): ITaskForm => {
-  const { content, due } = task
-  const date = due?.date || ''
-  const time = due?.datetime ? convertTime(due.datetime) : ''
-  return { content, date, time }
+  const { content, due, duration } = task
+
+  return {
+    content,
+    date: due?.date || '',
+    timeStart: getTimeByString(due?.datetime),
+    timeEnd: getTimeByDuration(due?.datetime, duration?.amount),
+  }
 }
+
+// TODO Вынести функции с кординатами в shared/lib
 
 export const getTopByСoordinates = (event: MouseEvent<HTMLDivElement>, dimensions: IDimensions): number => {
   return (Math.floor((event.nativeEvent.offsetY) / dimensions.height * 2) / 2) * dimensions.height

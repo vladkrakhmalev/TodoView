@@ -1,8 +1,7 @@
 .task-card {
   display: grid;
   gap: 5px;
-  grid-template-columns: auto 1fr;
-  align-items: center;
+  grid-template-columns: auto 1fr;  
   background-color: var(--bg-secondary);
   border-radius: var(--border-radius);
   padding: 3px 5px;
@@ -13,4 +12,10 @@
   height: auto;
   white-space: nowrap;
   overflow: hidden;
+  transition: .2s;
+}
+
+.task-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }

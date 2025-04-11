@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import dayjs from '@shared/config/dayjs';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
-  value?: string
+  value?: string | number
   label?: string
   inputRef?: RefObject<HTMLInputElement | null>
   onUpdate: (value: string) => void
 }
 
 export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onUpdate, ...rest }) => {
-  const [inputValue, setInputValue] = useState<string>(value || '')
+  const [inputValue, setInputValue] = useState<string | number>(value || '')
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -23,11 +23,6 @@ export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onU
       const today = dayjs().format('YYYY-MM-DD')
       setInputValue(today)
       if (onUpdate) onUpdate(today)
-    }
-    if (type === 'time' && !value) {
-      const time = dayjs().add(1, 'hour').format('HH:00')
-      setInputValue(time)
-      if (onUpdate) onUpdate(time)
     }
   }, [value, type, onUpdate])
 

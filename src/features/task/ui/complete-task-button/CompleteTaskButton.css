@@ -16,10 +16,16 @@
   background: var(--bg-secondary-hover);
 }
 
+.complete-task-button._complete {
+  background: var(--color-primary);
+  border-color: transparent;
+}
+
 .complete-task-button__check {
+  color: var(--text-contrast);
   line-height: 1;
   font-size: 10px;
-  margin-top: 3px;
+  margin-top: 2px;
   opacity: 0;
   transition: .2s;
 }
