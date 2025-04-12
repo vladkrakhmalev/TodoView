@@ -1,10 +1,7 @@
 import { FC, useRef, useState } from 'react';
-import { TaskForm } from '../task-form/TaskForm';
 import { Button } from '@shared/ui/button';
 import { Modal } from '@shared/ui/modal';
-import { convertFormToTask } from '@features/task/lib/taskHelpers';
-import { ITaskForm } from '@features/task/model/task';
-import { useAddTask } from '@entities/task';
+import { TaskForm, ITaskForm, useAddTask, convertFormToTask, } from '@entities/task';
 
 export const AddTaskButton: FC = () => {
   const { mutateAsync: addTask, isPending } = useAddTask()

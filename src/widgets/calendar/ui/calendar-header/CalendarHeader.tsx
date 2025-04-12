@@ -2,7 +2,7 @@ import { FC } from 'react';
 import './CalendarHeader.css'
 import { useCalendarStore } from '../../model/calendarStore';
 import { Button } from '@shared/ui/button';
-import { AddTaskButton } from '@features/task';
+import { AddTaskButton } from '@features/add-task';
 
 export const CalendarHeader: FC = () => {
   const { prevWeek, nextWeek, resetWeek } = useCalendarStore()

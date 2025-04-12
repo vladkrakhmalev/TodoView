@@ -1,22 +1,20 @@
-import { FC, ReactNode, useMemo, useRef, useState } from 'react';
-import { ITask, useUpdateTask } from '@entities/task';
-import { TaskForm } from '../task-form/TaskForm';
-import { convertFormToTask, convertTaskToForm } from '@features/task/lib/taskHelpers';
+import { FC, MouseEvent, ReactNode, useMemo, useRef, useState } from 'react';
 import { Modal } from '@shared/ui/modal';
-import { ITaskForm } from '@features/task/model/task';
+import { TaskForm, ITask, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm } from '@entities/task';
 
 interface IProps {
   task: ITask
   children: ReactNode
 }
 
-export const UpdateTaskWrapper: FC<IProps> = ({ task, children }) => {
+export const UpdateTask: FC<IProps> = ({ task, children }) => {
   const { mutateAsync: updateTask, isPending } = useUpdateTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const firstInputRef = useRef<HTMLInputElement>(null)
   const defaultForm = useMemo(() => convertTaskToForm(task), [task])
 
-  const handlerOpen = () => {
+  const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
     setIsOpen(true)
     firstInputRef.current?.focus()
   }

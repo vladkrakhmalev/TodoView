@@ -1,18 +1,16 @@
 import { FC, MouseEvent, useRef, useState } from 'react';
 import './AddTaskWrapper.css'
-import { TaskCard, IEmptyTask, useAddTask } from '@entities/task';
-import { IDimensions } from '@shared/types';
-import { TaskForm } from '../task-form/TaskForm';
-import { getTopByСoordinates, getTimeByСoordinates, convertFormToTask } from '../../lib/taskHelpers';
-import { ITaskForm } from '../../model/task';
 import { Modal } from '@shared/ui/modal';
+import { TaskForm, TaskCard, IEmptyTask, ITaskForm, useAddTask, getTopByСoordinates, getDateByСoordinates, convertFormToTask } from '@entities/task';
+import dayjs from 'dayjs';
 
 interface IProps {
   date: string
-  dimensions: IDimensions
+  taskHeight: number
+  taskWidth: number
 }
 
-export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
+export const AddTaskWrapper: FC<IProps> = ({ date, taskHeight, taskWidth }) => {
   const { mutateAsync: addTask, isPending } = useAddTask()
 
   const [defaultForm, setDefaultForm] = useState<Partial<ITaskForm>>({ date })
@@ -22,10 +20,12 @@ export const AddTaskWrapper: FC<IProps> = ({ date, dimensions }) => {
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
-    const _top = getTopByСoordinates(event, dimensions)
-    const timeStart = getTimeByСoordinates(event, dimensions)
-    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart }))
-    setNewTask({ content: 'Новая задача', _top, _height: dimensions.height / 2, _width: dimensions.width })
+    const _top = getTopByСoordinates(event, taskHeight)
+    const date = getDateByСoordinates(event, taskHeight)
+    const timeStart = dayjs(date).format('HH:mm')
+    const timeEnd = dayjs(date).add(30, 'minute').format('HH:mm')
+    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart, timeEnd }))
+    setNewTask({ content: 'Новая задача', _top, _height: taskHeight / 2, _width: taskWidth })
     setIsOpen(true)
     firstInputRef.current?.focus()
   }

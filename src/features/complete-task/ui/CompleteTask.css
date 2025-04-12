@@ -1,4 +1,4 @@
-.complete-task-button {
+.complete-task {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,17 +11,17 @@
   transition: .2s;
 }
 
-.complete-task-button:hover {
+.complete-task:hover {
   cursor: pointer;
   background: var(--bg-secondary-hover);
 }
 
-.complete-task-button._complete {
+.complete-task._complete {
   background: var(--color-primary);
   border-color: transparent;
 }
 
-.complete-task-button__check {
+.complete-task__check {
   color: var(--text-contrast);
   line-height: 1;
   font-size: 10px;
@@ -30,6 +30,6 @@
   transition: .2s;
 }
 
-.complete-task-button._complete .complete-task-button__check {
+.complete-task._complete .complete-task__check {
   opacity: 1;
 }

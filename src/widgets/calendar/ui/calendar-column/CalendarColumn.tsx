@@ -1,30 +1,30 @@
 import { FC } from 'react';
 import './CalendarColumn.css'
-import { ITask, TaskCard } from '@entities/task';
-import { IDimensions } from '@shared/types';
-import { AddTaskWrapper, CompleteTaskButton, UpdateTaskWrapper } from '@features/task';
+import { ITask } from '@entities/task';
+import { AddTaskWrapper } from '@features/add-task';
+import { DragTaskDroppable, DragTaskDraggable } from '@features/drag-task';
+import { UpdateTask } from '@features/update-task';
+import { CompleteTask } from '@features/complete-task';
+import { useCalendarStore } from '@widgets/calendar/model/calendarStore';
 
 interface IProps {
   tasks: ITask[]
   date: string
-  dimensions: IDimensions
-  columnRef?: React.RefObject<HTMLDivElement | null>
 }
 
-export const CalendarColumn: FC<IProps> = ({ tasks, date, dimensions, columnRef }) => {
+export const CalendarColumn: FC<IProps> = ({ tasks, date }) => {
+  const { taskHeight, taskWidth } = useCalendarStore()
 
   return (
-    <div className="calendar-column" ref={columnRef}>
-      <AddTaskWrapper date={date} dimensions={dimensions} />
-      {tasks.map(task => (
-        <UpdateTaskWrapper key={task.id} task={task}>
-          <TaskCard
-            key={task.id}
-            task={task}
-            completeTask={<CompleteTaskButton taskId={task.id}/>}
-          />
-        </UpdateTaskWrapper>
-      ))}
+    <div className="calendar-column">
+      <DragTaskDroppable id={date}>
+        <AddTaskWrapper date={date} taskHeight={taskHeight} taskWidth={taskWidth} />
+        {tasks.map(task => (
+          <UpdateTask key={task.id} task={task}>
+            <DragTaskDraggable task={task} completeTask={<CompleteTask taskId={task.id}/>}/>
+          </UpdateTask>
+        ))}
+      </DragTaskDroppable>
     </div>
   );
 };
