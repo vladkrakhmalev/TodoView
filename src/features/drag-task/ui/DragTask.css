@@ -1,0 +1,9 @@
+.drag-task__droppable {
+  height: 100%;
+}
+
+.drag-task__shadow {
+  position: absolute;
+  border-radius: 10px;
+  background-color: var(--bg-secondary-hover);
+}

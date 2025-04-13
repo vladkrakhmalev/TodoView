@@ -1,0 +1,36 @@
+import { FC, ReactNode } from 'react';
+import { ITask, TaskCard } from '@entities/task';
+import { useDraggable } from '@dnd-kit/core';
+
+interface IProps {
+  task: ITask,
+  completeTask: ReactNode
+}
+
+export const DragTaskDraggable: FC<IProps> = ({ task, completeTask }) => {
+
+  const {attributes, listeners, setNodeRef, transform} = useDraggable({ id: task.id, data: task })
+  
+  const style = {
+    opacity: transform ? 0.5 : 1,
+    transition: '0.2s',
+  }
+
+  const draggableTask = (
+    <i
+      className='fi fi-sr-grip-dots-vertical'
+      {...listeners}
+      {...attributes}
+    />
+  )
+
+  return (
+    <div ref={setNodeRef} style={style}>
+      <TaskCard
+        task={task}
+        completeTask={completeTask}
+        draggableTask={draggableTask}
+      />
+    </div>
+  );
+};

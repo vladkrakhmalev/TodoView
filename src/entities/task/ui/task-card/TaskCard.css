@@ -2,15 +2,16 @@
   display: grid;
   gap: 5px;
   grid-template-columns: auto 1fr;  
+  align-items: start;
   background-color: var(--bg-secondary);
   border-radius: var(--border-radius);
-  padding: 3px 5px;
+  padding: 3px 10px 3px 5px;
   position: absolute;
   font-size: 14px;
   margin: 2px;
   user-select: none;
   height: auto;
-  white-space: nowrap;
+  line-height: 1.2;
   overflow: hidden;
   transition: .2s;
 }
@@ -18,4 +19,24 @@
 .task-card:hover {
   cursor: pointer;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-card:hover .task-card__draggable {
+  opacity: .3;
+  transform: translate(0);
+}
+
+.task-card__draggable {
+  background-color: var(--bg-secondary);
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 4px 4px;
+  opacity: 0;
+  transform: translate(10px);
+  transition: .2s;
+}
+
+.task-card__draggable:hover {
+  opacity: 1 !important;
 }
