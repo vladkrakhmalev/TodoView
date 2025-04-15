@@ -27,7 +27,7 @@ export const DragTaskContext: FC<IProps> = ({ children, taskHeight, taskWidth })
     setShadowTop(null)
     if (event.active.id && event.over?.id) {
       const newTask = convertDndToTask(event, taskHeight)
-      // updateTask(newTask)
+      updateTask(newTask)
     }
   }
 
