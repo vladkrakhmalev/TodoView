@@ -14,7 +14,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  background-color: #fffc;
+  background-color: var(--swadow-secondary);
   transition: .3s;
   z-index: -1;
   opacity: 0;

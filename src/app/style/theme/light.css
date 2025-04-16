@@ -1,10 +1,14 @@
-:root {
+[data-theme=light] {
   --color-primary: #457aff;
   --color-primary-hover: #2658d5;
+  --color-white: #fff;
+  --color-black: #333;
 
   --bg-primary: #ffffff;
   --bg-secondary: #edf1ff;
   --bg-secondary-hover: #d1dbff;
+  --bg-danger: #fe6161;
+  --bg-danger-hover: #e14545;
 
   --text-primary: #333;
   --text-secondary: #8e94a2;
@@ -12,4 +16,7 @@
 
   --border-primary: #333;
   --border-light: #ddd;
+
+  --swadow-primary: #0002;
+  --swadow-secondary: #fffb;
 }
