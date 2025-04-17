@@ -1,0 +1,26 @@
+.switcher {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+}
+
+.switcher__item {
+  user-select: none;
+  padding: 5px 20px;
+  border-radius: 10px;
+  transition: .2s;
+}
+
+.switcher__item:hover {
+  background-color: var(--bg-secondary-hover);
+  cursor: pointer;
+}
+
+.switcher__item._active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  cursor: default;
+}
