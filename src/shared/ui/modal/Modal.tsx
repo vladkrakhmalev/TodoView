@@ -5,17 +5,17 @@ import clsx from 'clsx';
 interface IProps {
   isOpen: boolean
   children: ReactNode
-  right?: boolean
-  onClose: () => void
+  position?: 'center' | 'left' | 'right'
+  onClose?: () => void
 }
 
-export const Modal: FC<IProps> = ({ children, isOpen, right, onClose }) => {
+export const Modal: FC<IProps> = ({ children, isOpen, position = 'center', onClose }) => {
   const classes = useMemo(() => {
-    return clsx('modal', isOpen && '_open', right && '_right')
-  }, [isOpen, right])
+    return clsx('modal', isOpen && '_open', '_' + position)
+  }, [isOpen, position])
 
   return (
-    <div className={classes} onClick={onClose}>
+    <div className={classes} onClick={() => onClose && onClose()}>
       <div className='modal__container' onClick={(event) => event.stopPropagation()}>
         <i className='modal__close fi fi-rr-cross-small' onClick={onClose}/>
         {children}

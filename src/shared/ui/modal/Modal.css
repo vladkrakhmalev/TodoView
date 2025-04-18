@@ -19,6 +19,11 @@
   opacity: 1;
 }
 
+.modal._left {
+  padding: 0;
+  justify-content: start;
+}
+
 .modal._right {
   padding: 0;
   justify-content: end;
@@ -36,14 +41,16 @@
   opacity: 0;
 }
 
+.modal._left .modal__container,
+.modal._right .modal__container {
+  transform: translate(-100px, 0);
+  height: 100%;
+  border-radius: 0;
+}
+
 .modal._open .modal__container {
   transform: scale(1);
   opacity: 1;
-}
-
-.modal._right .modal__container {
-  height: 100%;
-  border-radius: 0;
 }
 
 .modal__close {
@@ -59,6 +66,7 @@
   opacity: .7;
 }
 
+.modal._left .modal__close,
 .modal._right .modal__close {
   top: 20px;
   right: 20px;
