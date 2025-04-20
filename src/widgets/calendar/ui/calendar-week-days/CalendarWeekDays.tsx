@@ -3,17 +3,31 @@ import './CalendarWeekDays.css'
 import { FIRST_COLUMN_WIDTH } from '../../config';
 import { useCalendarStore } from '../../model/calendarStore';
 import { useWeekDays } from '../../hooks/useWeekDays';
+import dayjs from 'dayjs';
+import clsx from 'clsx';
+import { AddTaskButton } from '@features/add-task';
 
 export const CalendarWeekDays: FC = () => {
   const { startDate } = useCalendarStore()
   const weekDays = useWeekDays(startDate)
 
+  const isToday = (day: dayjs.Dayjs) => day.isSame(dayjs(), "day")
+
   return (
-    <div className="calendar-week-days" style={{paddingLeft: `${FIRST_COLUMN_WIDTH}px`}}>
+    <div className="calendar-week-days">
+      <div style={{width: `${FIRST_COLUMN_WIDTH}px`}}>
+        <AddTaskButton/>
+      </div>
+
       {weekDays.map((day, idx) =>
-        <p key={idx} className="calendar-week-days__day">
-          {day.format("dd DD MMM")} 
-        </p>
+        <div key={idx} className={clsx("calendar-week-days__day", isToday(day) && "_active")}>
+          <span className='calendar-week-days__day-title'>
+            {day.format("DD")} 
+          </span>
+          <span className='calendar-week-days__day-label'>
+            {day.format("dd")} 
+          </span>
+        </div>
       )}
     </div>
   );

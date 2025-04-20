@@ -1,9 +1,35 @@
 .calendar-week-days {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: auto repeat(7, 1fr);
+  align-items: center;
 }
 
 .calendar-week-days__day {
-  padding: 20px 10px;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
   text-align: center;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  margin: 0 2px
+}
+
+.calendar-week-days__day._active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.calendar-week-days__day-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: inherit;
+  line-height: 1;
+}
+
+.calendar-week-days__day-label {
+  font-size: 14px;
+  color: inherit;
+  line-height: 1;
 }
