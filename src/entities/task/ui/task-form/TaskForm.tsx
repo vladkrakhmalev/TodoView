@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect, useState } from 'react';
+import { FC, FormEvent, MouseEvent, useEffect, useState } from 'react';
 import './TaskForm.css'
 import { Button } from '@shared/ui/button';
 import { Input } from '@shared/ui/input';
@@ -9,7 +9,9 @@ interface IProps {
   defaultForm?: Partial<ITaskForm>
   firstInputRef: React.RefObject<HTMLInputElement | null>
   isLoading: boolean
+  isDeleting?: boolean
   onSubmit: (form: ITaskForm) => void
+  onDelete?: () => void
 }
 
 const initialForm: ITaskForm = {
@@ -19,7 +21,16 @@ const initialForm: ITaskForm = {
   timeEnd: '',
 }
 
-export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoading, onSubmit }) => {
+export const TaskForm: FC<IProps> = (props) => {
+  const {
+    title,
+    defaultForm,
+    firstInputRef,
+    isLoading,
+    isDeleting,
+    onSubmit,
+    onDelete,
+  } = props
   
   const [form, setForm] = useState<ITaskForm>({ ...initialForm, ...defaultForm })
 
@@ -27,9 +38,14 @@ export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoad
     setForm({...form, [field]: value})
   }
 
-  const handlerSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     onSubmit(form)
+  }
+
+  const handlerDangerClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    if (onDelete) onDelete()
   }
 
   useEffect(() => {
@@ -68,7 +84,23 @@ export const TaskForm: FC<IProps> = ({ title, defaultForm, firstInputRef, isLoad
         onUpdate={(value) => handlerChange(value, 'timeEnd')}
       />
 
-      <Button isLoading={isLoading} fullWidth variant='primary'>Сохранить</Button>
+      <div className="task-form__buttons">
+        <Button
+          isLoading={isLoading}
+          iconBefore='disk'
+          variant='primary'
+          fullWidth
+        >Сохранить</Button>
+
+        {onDelete && 
+          <Button
+            isLoading={isDeleting}
+            iconBefore='trash'
+            variant='danger'
+            onClick={handlerDangerClick}
+          />
+        }
+      </div>
     </form>
   );
 };

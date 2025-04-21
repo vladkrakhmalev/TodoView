@@ -12,3 +12,10 @@
   font-size: 24px;
   font-weight: bold;
 }
+
+.task-form__buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -34,3 +34,11 @@ export const useUpdateTask = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   })
 }
+
+export const useDeleteTask = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => todoistApi.deleteTask(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
+  })
+}

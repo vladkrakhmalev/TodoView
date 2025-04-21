@@ -1,6 +1,6 @@
 import { FC, MouseEvent, ReactNode, useMemo, useRef, useState } from 'react';
 import { Modal } from '@shared/ui/modal';
-import { TaskForm, ITask, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm } from '@entities/task';
+import { TaskForm, ITask, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm, useDeleteTask } from '@entities/task';
 
 interface IProps {
   task: ITask
@@ -8,7 +8,8 @@ interface IProps {
 }
 
 export const UpdateTask: FC<IProps> = ({ task, children }) => {
-  const { mutateAsync: updateTask, isPending } = useUpdateTask()
+  const { mutateAsync: updateTask, isPending: isUpdatePending } = useUpdateTask()
+  const { mutateAsync: deleteTask, isPending: isDeletePending } = useDeleteTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const firstInputRef = useRef<HTMLInputElement>(null)
   const defaultForm = useMemo(() => convertTaskToForm(task), [task])
@@ -25,6 +26,11 @@ export const UpdateTask: FC<IProps> = ({ task, children }) => {
     setIsOpen(false)
   }
 
+  const handlerDelete = async () => {
+    await deleteTask(task.id)
+    setIsOpen(false)
+  }
+
   return (<>
     <div onClick={handlerOpen}>
       {children}
@@ -35,8 +41,10 @@ export const UpdateTask: FC<IProps> = ({ task, children }) => {
         title='Редактировать задачу'
         defaultForm={defaultForm}
         firstInputRef={firstInputRef}
-        isLoading={isPending}
+        isLoading={isUpdatePending}
+        isDeleting={isDeletePending}
         onSubmit={handlerSubmit}
+        onDelete={handlerDelete}
       />
     </Modal>
   </>)
