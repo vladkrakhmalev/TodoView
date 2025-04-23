@@ -1,9 +1,10 @@
 import { FC, ReactNode } from 'react';
-import { ITask, TaskCard } from '@entities/task';
+import { TaskCard } from '@entities/task';
 import { useDraggable } from '@dnd-kit/core';
+import { Task } from '@doist/todoist-api-typescript';
 
 interface IProps {
-  task: ITask,
+  task: Task,
   completeTask: ReactNode
 }
 

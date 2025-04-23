@@ -1,0 +1,8 @@
+.calendar-cell {
+  width: 100%;
+  position: relative;
+}
+
+.calendar-cell:nth-child(even) {
+  border-bottom: 1px solid var(--border-light);
+}

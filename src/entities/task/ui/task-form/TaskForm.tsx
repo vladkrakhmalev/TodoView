@@ -1,4 +1,4 @@
-import { FC, FormEvent, MouseEvent, useEffect, useState } from 'react';
+import { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import './TaskForm.css'
 import { Button } from '@shared/ui/button';
 import { Input } from '@shared/ui/input';
@@ -7,7 +7,6 @@ import { ITaskForm } from '../../model/task';
 interface IProps {
   title: string
   defaultForm?: Partial<ITaskForm>
-  firstInputRef: React.RefObject<HTMLInputElement | null>
   isLoading: boolean
   isDeleting?: boolean
   onSubmit: (form: ITaskForm) => void
@@ -25,7 +24,6 @@ export const TaskForm: FC<IProps> = (props) => {
   const {
     title,
     defaultForm,
-    firstInputRef,
     isLoading,
     isDeleting,
     onSubmit,
@@ -33,6 +31,7 @@ export const TaskForm: FC<IProps> = (props) => {
   } = props
   
   const [form, setForm] = useState<ITaskForm>({ ...initialForm, ...defaultForm })
+  const firstInputRef = useRef<HTMLInputElement>(null)
 
   const handlerChange = (value: string, field: keyof ITaskForm) => {
     setForm({...form, [field]: value})
@@ -51,6 +50,10 @@ export const TaskForm: FC<IProps> = (props) => {
   useEffect(() => {
     setForm({ ...initialForm, ...defaultForm })
   }, [defaultForm])
+
+  useEffect(() => {
+    firstInputRef.current?.focus()
+  }, [])
 
   return (
     <form className='task-form' onSubmit={handlerSubmit}>

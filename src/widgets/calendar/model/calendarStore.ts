@@ -3,21 +3,16 @@ import { create } from "zustand";
 
 interface IState {
   startDate: dayjs.Dayjs
-  taskHeight: number
-  taskWidth: number
 }
 
 interface IActions {
   prevWeek: () => void
   nextWeek: () => void
   resetWeek: () => void
-  setSize: (height: number, width: number) => void
 }
 
 const initialState: IState = {
-  startDate: dayjs().startOf("isoWeek"),
-  taskHeight: 0,
-  taskWidth: 0,
+  startDate: dayjs().startOf("isoWeek")
 }
 
 export const useCalendarStore = create<IState & IActions>()((set) => ({
@@ -25,6 +20,5 @@ export const useCalendarStore = create<IState & IActions>()((set) => ({
   prevWeek: () => set((state) => ({ startDate: state.startDate.subtract(1, "week") })),
   nextWeek: () => set((state) => ({ startDate: state.startDate.add(1, "week") })),
   resetWeek: () => set({ startDate: dayjs().startOf("isoWeek") }),
-  setSize: (taskHeight, taskWidth) => set({ taskHeight, taskWidth })
 }))
 

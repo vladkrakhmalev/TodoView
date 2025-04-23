@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import './CalendarWeekDays.css'
-import { FIRST_COLUMN_WIDTH } from '../../config';
 import { useCalendarStore } from '../../model/calendarStore';
 import { useWeekDays } from '../../hooks/useWeekDays';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 import { AddTaskButton } from '@features/add-task';
+import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 
 export const CalendarWeekDays: FC = () => {
   const { startDate } = useCalendarStore()

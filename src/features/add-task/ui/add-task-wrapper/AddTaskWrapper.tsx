@@ -1,38 +1,32 @@
-import { FC, MouseEvent, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import './AddTaskWrapper.css'
 import { Modal } from '@shared/ui/modal';
-import { TaskForm, TaskCard, IEmptyTask, ITaskForm, useAddTask, getTopByСoordinates, getDateByСoordinates, convertFormToTask } from '@entities/task';
-import dayjs from 'dayjs';
+import { TaskForm, ITaskForm, useAddTask, convertFormToTask } from '@entities/task';
+import dayjs from '@shared/config/dayjs';
+import clsx from 'clsx';
 
 interface IProps {
   date: string
-  taskHeight: number
-  taskWidth: number
+  time: string
 }
 
-export const AddTaskWrapper: FC<IProps> = ({ date, taskHeight, taskWidth }) => {
+export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
   const { mutateAsync: addTask, isPending } = useAddTask()
 
   const [defaultForm, setDefaultForm] = useState<Partial<ITaskForm>>({ date })
-  const [newTask, setNewTask] = useState<IEmptyTask | null>(null)
+  const [showTask, setShowTask] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const firstInputRef = useRef<HTMLInputElement>(null)
-
-  const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
-    const _top = getTopByСoordinates(event, taskHeight)
-    const date = getDateByСoordinates(event, taskHeight)
-    const timeStart = dayjs(date).format('HH:mm')
-    const timeEnd = dayjs(date).add(30, 'minute').format('HH:mm')
-    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart, timeEnd }))
-    setNewTask({ content: 'Новая задача', _top, _height: taskHeight / 2, _width: taskWidth })
+  const handlerOpen = () => {
+    const timeEnd = dayjs(time, 'HH:mm').add(30, 'minute').format('HH:mm')
+    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart: time, timeEnd }))
+    setShowTask(true)
     setIsOpen(true)
-    firstInputRef.current?.focus()
   }
 
   const handlerClose = () => {
     setDefaultForm({ date })
-    setNewTask(null)
+    setShowTask(false)
     setIsOpen(false)
   }
 
@@ -43,15 +37,12 @@ export const AddTaskWrapper: FC<IProps> = ({ date, taskHeight, taskWidth }) => {
   }
 
   return (<>
-    <div className='add-task-wrapper' onClick={handlerOpen}>
-      {newTask && <TaskCard task={newTask} isEmpty={true}/>}
-    </div>
+    <div className={clsx('add-task-wrapper', showTask && '_shadow')} onClick={handlerOpen}/>
 
     <Modal isOpen={isOpen} onClose={handlerClose}>
       <TaskForm
         title='Добавить задачу'
         defaultForm={defaultForm}
-        firstInputRef={firstInputRef}
         isLoading={isPending}
         onSubmit={handlerSubmit}
       />

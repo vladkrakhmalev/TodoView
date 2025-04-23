@@ -1,52 +1,44 @@
 import { FC, ReactNode, useState } from 'react';
 import './DragTask.css'
 import { pointerWithin, DndContext, DragEndEvent, DragMoveEvent } from '@dnd-kit/core';
-import { useUpdateTask, convertDndToTask } from '@entities/task';
+import { convertDndToTask } from '@entities/task';
+import { DragTaskContext } from '../model/dragTaskContext';
+import { useUpdateTask } from '@entities/task';
 
 interface IProps {
   children: ReactNode
-  taskHeight: number
-  taskWidth: number
 }
 
-export const DragTaskContext: FC<IProps> = ({ children, taskHeight, taskWidth }) => {
+export const DragTaskContextProvider: FC<IProps> = ({ children }) => {
   const { mutate: updateTask } = useUpdateTask()
-  const [shadowTop, setShadowTop] = useState<number | null>(null)
-  const [shadowLeft, setShadowLeft] = useState<number>(0)
+  const [activeDroppableId, setActiveDroppableId] = useState<string | null>(null)
 
   const handleDragMove = (event: DragMoveEvent) => {
-    const pointerY = event.delta?.y + (event.active.data.current?._top || 0);
-    const snappedTop = Math.round(pointerY / taskHeight * 2) / 2 * taskHeight;
-    if (event.over?.rect) {
-      setShadowLeft((event.over?.rect.left) - 20)
-      setShadowTop(snappedTop);
+    if (event.over?.id) {
+      setActiveDroppableId(String(event.over.id));
+    } else {
+      setActiveDroppableId(null);
     }
   }
 
   const handleDragEnd = async (event: DragEndEvent) => {
-    setShadowTop(null)
-    if (event.active.id && event.over?.id) {
-      const newTask = convertDndToTask(event, taskHeight)
+    if (event.active.id && activeDroppableId) {
+      const newTask = convertDndToTask(event.active.id, activeDroppableId)
       updateTask(newTask)
     }
-  }
-
-  const style = {
-    top: `${shadowTop}px`,
-    left: `${shadowLeft}px`,
-    width: `${taskWidth - 2}px`,
-    height: `${taskHeight / 2}px`,
+    
+    setActiveDroppableId(null);
   }
 
   return (
-    <DndContext
-      collisionDetection={pointerWithin}
-      onDragMove={handleDragMove}
-      onDragEnd={handleDragEnd}
-    >
-      {children}
-
-      {shadowTop !== null && <div className='drag-task__shadow' style={style}/>}
-    </DndContext>
+    <DragTaskContext.Provider value={{ activeDroppableId }}>
+      <DndContext
+        collisionDetection={pointerWithin}
+        onDragMove={handleDragMove}
+        onDragEnd={handleDragEnd}
+      >
+        {children}
+      </DndContext>
+    </DragTaskContext.Provider>
   );
 };

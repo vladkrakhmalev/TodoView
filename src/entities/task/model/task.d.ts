@@ -1,21 +1,19 @@
 import { Task } from '@doist/todoist-api-typescript';
 
-export interface ITask extends Task {
-  _top: number
-  _height: number
-  _width: number
-}
-
-export interface IEmptyTask {
-  content: string
-  _top: number
-  _height: number
-  _width: number
-}
-
 export interface ITaskForm {
   content: string
   date?: string
   timeStart?: string
   timeEnd?: string
+}
+
+export interface IDayWithTasks {
+  noTime: Task[]
+  [key: string]: Task[]
+}
+
+export interface IWeekdayWithTasks {
+  noDate: Task[]
+  // 7 дней недели
+  days: [IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks]
 }

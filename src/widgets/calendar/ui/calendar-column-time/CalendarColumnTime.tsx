@@ -1,21 +1,17 @@
-import { FC, RefObject } from 'react';
+import { FC, useMemo } from 'react';
 import './CalendarColumnTime.css'
-import { FIRST_COLUMN_WIDTH, TIMES } from '../../config';
+import { CELL_HEIGHT, FIRST_COLUMN_WIDTH, TIMES } from '@shared/config/calendar';
 
-interface IProps {
-  timeRef: RefObject<HTMLParagraphElement | null>
-}
+export const CalendarColumnTime: FC = () => {
 
-export const CalendarColumnTime: FC<IProps> = ({ timeRef }) => {
+  const style = useMemo(() => {
+    return {height: `${CELL_HEIGHT * 2}px`}
+  }, [])
 
   return (
     <div className="calendar-column-time" style={{width: `${FIRST_COLUMN_WIDTH}px`}}>
-      {TIMES.map((time, idx) =>
-        <p
-          key={idx}
-          ref={idx === 0 ? timeRef : null}
-          className="calendar-column-time__item"
-        >
+      {TIMES.map(time =>
+        <p key={time} style={style} className="calendar-column-time__item">
           {time}
         </p>
       )}

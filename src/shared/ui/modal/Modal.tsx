@@ -10,9 +10,12 @@ interface IProps {
 }
 
 export const Modal: FC<IProps> = ({ children, isOpen, position = 'center', onClose }) => {
+
   const classes = useMemo(() => {
-    return clsx('modal', isOpen && '_open', '_' + position)
-  }, [isOpen, position])
+    return clsx('modal _open', '_' + position)
+  }, [position])
+
+  if (!isOpen) return null
 
   return (
     <div className={classes} onClick={() => onClose && onClose()}>

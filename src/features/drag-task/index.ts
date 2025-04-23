@@ -1,3 +1,3 @@
-export { DragTaskContext } from './ui/DragTaskContext';
-export { DragTaskDroppable } from './ui/DragTaskDroppable';
+export { DragTaskContextProvider } from './ui/DragTaskContext';
 export { DragTaskDraggable } from './ui/DragTaskDraggable';
+export { DragTaskDroppable } from './ui/DragTaskDroppable';

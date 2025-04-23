@@ -1,9 +1,10 @@
-import { FC, MouseEvent, ReactNode, useMemo, useRef, useState } from 'react';
+import { FC, MouseEvent, ReactNode, useMemo, useState } from 'react';
 import { Modal } from '@shared/ui/modal';
-import { TaskForm, ITask, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm, useDeleteTask } from '@entities/task';
+import { TaskForm, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm, useDeleteTask } from '@entities/task';
+import { Task } from '@doist/todoist-api-typescript';
 
 interface IProps {
-  task: ITask
+  task: Task
   children: ReactNode
 }
 
@@ -11,13 +12,11 @@ export const UpdateTask: FC<IProps> = ({ task, children }) => {
   const { mutateAsync: updateTask, isPending: isUpdatePending } = useUpdateTask()
   const { mutateAsync: deleteTask, isPending: isDeletePending } = useDeleteTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const firstInputRef = useRef<HTMLInputElement>(null)
   const defaultForm = useMemo(() => convertTaskToForm(task), [task])
 
   const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation()
     setIsOpen(true)
-    firstInputRef.current?.focus()
   }
 
   const handlerSubmit = async (form: ITaskForm) => {
@@ -40,7 +39,6 @@ export const UpdateTask: FC<IProps> = ({ task, children }) => {
       <TaskForm
         title='Редактировать задачу'
         defaultForm={defaultForm}
-        firstInputRef={firstInputRef}
         isLoading={isUpdatePending}
         isDeleting={isDeletePending}
         onSubmit={handlerSubmit}
