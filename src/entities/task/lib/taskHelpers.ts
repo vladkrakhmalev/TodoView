@@ -44,6 +44,18 @@ export const convertDndToTask = (taskId: number | string, activeDroppableId: str
   }
 }
 
+export const convertResizeToTask = (duration: number, task: Task): IUpdateTask => {
+
+  return {
+    id: task.id,
+    data: {
+      ...task,
+      duration: duration,
+      durationUnit: 'minute',
+    }
+  }
+}
+
 const createEmptyDay = () =>
   TIMES_WITH_HALF.reduce<IDayWithTasks>(
     (acc, time) => ({ ...acc, [time]: [], noTime: [] }),

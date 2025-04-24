@@ -1,6 +1,7 @@
 .calendar-cell {
   width: 100%;
   position: relative;
+  padding: 2px;
 }
 
 .calendar-cell:nth-child(even) {

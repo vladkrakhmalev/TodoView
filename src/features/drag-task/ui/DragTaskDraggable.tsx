@@ -4,11 +4,12 @@ import { useDraggable } from '@dnd-kit/core';
 import { Task } from '@doist/todoist-api-typescript';
 
 interface IProps {
-  task: Task,
+  task: Task
   completeTask: ReactNode
+  resizeTask: ReactNode
 }
 
-export const DragTaskDraggable: FC<IProps> = ({ task, completeTask }) => {
+export const DragTaskDraggable: FC<IProps> = ({ task, completeTask, resizeTask }) => {
 
   const {attributes, listeners, setNodeRef, transform} = useDraggable({ id: task.id, data: task })
   
@@ -31,6 +32,7 @@ export const DragTaskDraggable: FC<IProps> = ({ task, completeTask }) => {
         task={task}
         completeTask={completeTask}
         draggableTask={draggableTask}
+        resizeTask={resizeTask}
       />
     </div>
   );

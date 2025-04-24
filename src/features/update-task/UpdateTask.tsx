@@ -6,9 +6,10 @@ import { Task } from '@doist/todoist-api-typescript';
 interface IProps {
   task: Task
   children: ReactNode
+  isResize: boolean
 }
 
-export const UpdateTask: FC<IProps> = ({ task, children }) => {
+export const UpdateTask: FC<IProps> = ({ task, children, isResize }) => {
   const { mutateAsync: updateTask, isPending: isUpdatePending } = useUpdateTask()
   const { mutateAsync: deleteTask, isPending: isDeletePending } = useDeleteTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -16,7 +17,7 @@ export const UpdateTask: FC<IProps> = ({ task, children }) => {
 
   const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation()
-    setIsOpen(true)
+    if (!isResize) setIsOpen(true)
   }
 
   const handlerSubmit = async (form: ITaskForm) => {

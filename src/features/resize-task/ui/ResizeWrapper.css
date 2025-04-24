@@ -1,0 +1,14 @@
+.resize-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    cursor: ns-resize;
+    background: transparent;
+    transition: background-color 0.2s;
+}
+
+.resize-wrapper:hover {
+    background-color: var(--swadow-secondary);
+} 
