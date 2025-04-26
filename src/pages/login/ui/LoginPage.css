@@ -1,0 +1,36 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--bg-light);
+}
+
+.login-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: var(--bg-primary);
+}
+
+.login-title {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.login-description {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.todoist-logo {
+  max-width: 120px;
+  margin-bottom: 20px;
+}

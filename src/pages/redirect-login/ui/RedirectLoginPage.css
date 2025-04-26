@@ -1,0 +1,64 @@
+.redirect-login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--bg-light);
+}
+
+.redirect-login-container {
+  max-width: 500px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: var(--bg-primary);
+}
+
+.redirect-status-icon {
+  margin-bottom: 20px;
+  font-size: 48px;
+}
+
+.redirect-status-icon.loading {
+  color: var(--color-primary);
+}
+
+.redirect-status-icon.success {
+  color: var(--color-success, #28a745);
+}
+
+.redirect-status-icon.error {
+  color: var(--color-danger);
+}
+
+.redirect-status-text {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.redirect-status-message {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.redirect-loading-spinner {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} 
