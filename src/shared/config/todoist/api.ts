@@ -1,5 +1,5 @@
 import { TodoistApi } from "@doist/todoist-api-typescript"
 
-const TODOIST_KEY = localStorage.getItem('todoist_key') || ''
+const accessToken = localStorage.getItem('accessToken') || ''
 
-export const todoistApi = new TodoistApi(TODOIST_KEY)
+export const todoistApi = new TodoistApi(accessToken)

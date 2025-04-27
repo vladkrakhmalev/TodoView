@@ -35,8 +35,7 @@ export const useProcessOAuth = () => {
           })
         })
         const data = await response.json()
-        
-        localStorage.setItem('todoist_key', data.access_token)
+        localStorage.setItem('accessToken', data?.access_token || '')
         
         setStatus('success')
         setTimeout(() => {
