@@ -2,6 +2,7 @@ import { FC } from 'react';
 import './LoginPage.css';
 import { Button } from '@shared/ui/button';
 import { getAuthorizationUrl } from '@shared/config/todoist';
+import logoIcon from '@shared/assets/icons/logo.svg'
 
 const LoginPage: FC = () => {
   const handleLoginWithTodoist = () => {
@@ -11,7 +12,8 @@ const LoginPage: FC = () => {
   return (
     <div className="login-page">
       <div className="login-container">
-        <h1 className="login-title">Добро пожаловать в TodoCal</h1>
+        <img src={logoIcon} alt="TodoView" className="login-logo" />
+        <h1 className="login-title">Добро пожаловать в TodoView</h1>
         <p className="login-description">
           Для использования приложения необходимо войти через ваш аккаунт Todoist
         </p>
