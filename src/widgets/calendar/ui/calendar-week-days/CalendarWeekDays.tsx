@@ -1,13 +1,16 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import './CalendarWeekDays.css'
 import { useCalendarStore } from '../../model/calendarStore';
 import { useWeekDays } from '../../hooks/useWeekDays';
+import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
-import { AddTaskButton } from '@features/add-task';
-import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 
-export const CalendarWeekDays: FC = () => {
+interface IProps {
+  sidebar?: ReactNode
+}
+
+export const CalendarWeekDays: FC<IProps> = ({ sidebar }) => {
   const { startDate } = useCalendarStore()
   const weekDays = useWeekDays(startDate)
 
@@ -15,8 +18,9 @@ export const CalendarWeekDays: FC = () => {
 
   return (
     <div className="calendar-week-days">
+
       <div style={{width: `${FIRST_COLUMN_WIDTH}px`}}>
-        <AddTaskButton/>
+        {sidebar}
       </div>
 
       {weekDays.map((day, idx) =>
