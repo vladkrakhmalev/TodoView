@@ -15,6 +15,6 @@ export const Spiner: FC<IProps> = ({ size = 30, contrast, className }) => {
   }, [size])
 
   return (
-    <i className={clsx('spiner', contrast && '_contrast', className)} style={style} />
+    <i role="status" data-testid="spinner" className={clsx('spiner', contrast && '_contrast', className)} style={style} />
   );
 };

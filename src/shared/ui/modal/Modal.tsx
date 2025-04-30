@@ -18,9 +18,9 @@ export const Modal: FC<IProps> = ({ children, isOpen, position = 'center', onClo
   if (!isOpen) return null
 
   return (
-    <div className={classes} onClick={() => onClose && onClose()}>
-      <div className='modal__container' onClick={(event) => event.stopPropagation()}>
-        <i className='modal__close fi fi-rr-cross-small' onClick={onClose}/>
+    <div role="dialog" className={classes} onClick={() => onClose && onClose()}>
+      <div data-testid="modal-container" className='modal__container' onClick={(event) => event.stopPropagation()}>
+        <i data-testid="modal-close" className='modal__close fi fi-rr-cross-small' onClick={onClose}/>
         {children}
       </div>
     </div>

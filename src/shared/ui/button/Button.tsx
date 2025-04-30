@@ -28,9 +28,9 @@ export const Button: FC<IProps> = (props) => {
 
   return (
     <button disabled={disabled || isLoading} className={clsx('button', '_' + variant, fullWidth && '_full', className)} {...rest}>
-      {iconBefore && <i className={'button__icon fi fi-rr-' + iconBefore}/>}
+      {iconBefore && <i data-testid="icon-before" className={'button__icon fi fi-rr-' + iconBefore}/>}
       {children}
-      {iconAfter && <i className={'button__icon fi fi-rr-' + iconAfter}/>}
+      {iconAfter && <i data-testid="icon-after" className={'button__icon fi fi-rr-' + iconAfter}/>}
       {isLoading && <Spiner size={15} contrast={variant === 'primary'}/>}
     </button>
   );

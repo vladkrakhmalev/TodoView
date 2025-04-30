@@ -1,0 +1,59 @@
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { Modal } from './Modal'
+
+describe('Modal', () => {
+  it('should not render when isOpen is false', () => {
+    render(<Modal isOpen={false}>Content</Modal>)
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('should render when isOpen is true', () => {
+    render(<Modal isOpen>Content</Modal>)
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+  })
+
+  it('should render children', () => {
+    render(<Modal isOpen><div data-testid="test-content">Test Content</div></Modal>)
+    expect(screen.getByTestId('test-content')).toBeInTheDocument()
+  })
+
+  it('should render with center position by default', () => {
+    render(<Modal isOpen>Content</Modal>)
+    expect(screen.getByRole('dialog')).toHaveClass('modal _center')
+  })
+
+  it('should render with left position', () => {
+    render(<Modal isOpen position="left">Content</Modal>)
+    expect(screen.getByRole('dialog')).toHaveClass('modal _left')
+  })
+
+  it('should render with right position', () => {
+    render(<Modal isOpen position="right">Content</Modal>)
+    expect(screen.getByRole('dialog')).toHaveClass('modal _right')
+  })
+
+  it('should call onClose when clicking close button', () => {
+    const handleClose = vi.fn()
+    render(<Modal isOpen onClose={handleClose}>Content</Modal>)
+    
+    screen.getByTestId('modal-close').click()
+    expect(handleClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('should call onClose when clicking outside modal', () => {
+    const handleClose = vi.fn()
+    render(<Modal isOpen onClose={handleClose}>Content</Modal>)
+    
+    screen.getByRole('dialog').click()
+    expect(handleClose).toHaveBeenCalledTimes(1)
+  })
+
+  it('should not call onClose when clicking inside modal', () => {
+    const handleClose = vi.fn()
+    render(<Modal isOpen onClose={handleClose}>Content</Modal>)
+    
+    screen.getByTestId('modal-container').click()
+    expect(handleClose).not.toHaveBeenCalled()
+  })
+}) 

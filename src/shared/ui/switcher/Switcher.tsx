@@ -22,14 +22,16 @@ export const Switcher: FC<IProps> = ({ defaultValue = null, options, onChange })
   }
 
   return (
-    <div className='switcher'>
+    <div data-testid="switcher" className='switcher'>
       {options.map((option, idx) =>
         <div
           key={idx}
           className={clsx('switcher__item', activeValue === option.value && '_active')}
           onClick={() => handlerChange(option)}
         >
-          {option.title}
+          <span className='switcher__item-title'>
+            {option.title}
+          </span>
         </div>
       )}
     </div>

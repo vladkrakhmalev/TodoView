@@ -21,6 +21,14 @@
 
 .switcher__item._active {
   background-color: var(--color-primary);
-  color: var(--color-white);
   cursor: default;
+}
+
+.switcher__item-title {
+  transition: .2s;
+  color: var(--text-primary);
+} 
+
+.switcher__item._active .switcher__item-title {
+  color: var(--color-white);
 }

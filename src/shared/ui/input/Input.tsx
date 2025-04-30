@@ -12,6 +12,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onUpdate, ...rest }) => {
   const [inputValue, setInputValue] = useState<string | number>(value || '')
+  const inputId = `input-${Math.random().toString(36).substr(2, 9)}`
 
   const handlerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
@@ -29,12 +30,14 @@ export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onU
   return (
     <div className={clsx('input', className)}>
       {label &&
-        <label className='input__label'>
+        <label htmlFor={inputId} className='input__label'>
           {label}
         </label>
       }
 
       <input
+        id={inputId}
+        data-testid="input"
         ref={inputRef}
         className='input__component'
         value={value ?? inputValue}
