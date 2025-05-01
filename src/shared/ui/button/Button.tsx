@@ -5,7 +5,7 @@ import { Spiner } from '../spiner';
 
 interface IProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
-  variant?: 'primary' | 'secondary' | 'danger'
+  variant?: 'primary' | 'secondary' | 'danger' | 'transparent'
   iconBefore?: string
   iconAfter?: string
   fullWidth?: boolean

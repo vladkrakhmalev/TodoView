@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import './CalendarWeekDays.css'
 import { useCalendarStore } from '../../model/calendarStore';
 import { useWeekDays } from '../../hooks/useWeekDays';
@@ -6,11 +6,7 @@ import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 import dayjs from 'dayjs';
 import clsx from 'clsx';
 
-interface IProps {
-  sidebar?: ReactNode
-}
-
-export const CalendarWeekDays: FC<IProps> = ({ sidebar }) => {
+export const CalendarWeekDays: FC = () => {
   const { startDate } = useCalendarStore()
   const weekDays = useWeekDays(startDate)
 
@@ -19,9 +15,7 @@ export const CalendarWeekDays: FC<IProps> = ({ sidebar }) => {
   return (
     <div className="calendar-week-days">
 
-      <div style={{width: `${FIRST_COLUMN_WIDTH}px`}}>
-        {sidebar}
-      </div>
+      <div style={{width: `${FIRST_COLUMN_WIDTH}px`}}/>
 
       {weekDays.map((day, idx) =>
         <div key={idx} className={clsx("calendar-week-days__day", isToday(day) && "_active")}>

@@ -32,6 +32,14 @@
   background-color: var(--color-primary-hover);
 }
 
+.button._transparent {
+  background-color: transparent;
+}
+
+.button._transparent:not(:disabled):hover {
+  background-color: var(--bg-secondary);
+}
+
 .button._danger {
   background-color: var(--bg-danger);
   color: var(--color-white);

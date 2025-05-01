@@ -1,19 +1,22 @@
 .calendar-header {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  display: flex;
   align-items: center;
-  justify-content: start;
-  grid-gap: 10px;
+  justify-content: end;
+  gap: 10px;
 }
 
 .calendar-header__title {
   font-size: 24px;
   font-weight: bold;
   text-transform: capitalize;
+  margin-left: auto;
 }
 
 .calendar-header__arrows {
-  display: grid;
+  display: flex;
   gap: 5px;
-  grid-template-columns: 1fr 1fr;
+}
+
+.calendar-header__today-button {
+  margin-right: auto;
 }

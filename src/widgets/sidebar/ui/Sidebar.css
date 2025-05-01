@@ -1,22 +1,22 @@
 .sidebar {
+  padding: 20px;
   display: flex;
+  gap: 20px;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
-}
-
-.sidebar__content {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background-color: var(--bg-primary);
+  border-right: 1px solid var(--border-light);
+  transition: width 0.3s ease;
+  overflow: hidden;
 }
 
 .sidebar__logo-img {
-
   height: 40px;
   width: 40px;
 }
 
-.sidebar__menu {
+.sidebar__block {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -32,6 +32,7 @@
   font-weight: 500;
   transition: all 0.2s ease;
   background-color: var(--bg-primary);
+  overflow: hidden;
 }
 
 .sidebar__menu-item:hover,

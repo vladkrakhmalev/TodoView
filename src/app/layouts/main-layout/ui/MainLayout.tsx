@@ -1,6 +1,8 @@
 import { FC, useEffect } from "react"
 import { Outlet, useNavigate } from "react-router"
+import "./MainLayout.css"
 import { useAuth } from "@entities/auth"
+import { Sidebar } from "@widgets/sidebar"
 
 export const MainLayout: FC = () => {
   const { isAuth } = useAuth()
@@ -18,5 +20,10 @@ export const MainLayout: FC = () => {
     )
   }
 
-  return <Outlet/>
+  return (
+    <div className="main-layout">
+      <Sidebar/>
+      <Outlet/>
+    </div>
+  )
 }

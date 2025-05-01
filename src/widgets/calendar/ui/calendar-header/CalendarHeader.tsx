@@ -4,13 +4,14 @@ import { useCalendarStore } from '../../model/calendarStore';
 import { Button } from '@shared/ui/button';
 import { Switcher } from '@shared/ui/switcher';
 import { AddTaskButton } from '@features/add-task';
+import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 
 export const CalendarHeader: FC = () => {
   const { startDate, prevWeek, nextWeek, resetWeek } = useCalendarStore()
   const month = startDate.format("MMMM YYYY")
 
   return (
-    <div className="calendar-header">
+    <div className="calendar-header" style={{paddingLeft: FIRST_COLUMN_WIDTH}}>
       <AddTaskButton/>
 
       <p className="calendar-header__title">{month}</p>
@@ -20,7 +21,11 @@ export const CalendarHeader: FC = () => {
         <Button iconBefore="angle-right" onClick={nextWeek}/>
       </div>
 
-      <Button iconBefore="calendar-day" onClick={resetWeek}>
+      <Button
+        iconBefore="calendar-day"
+        className='calendar-header__today-button'
+        onClick={resetWeek}
+      >
         Сегодня
       </Button>
 
