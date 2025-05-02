@@ -1,12 +1,13 @@
 import { AddTaskArgs } from "@doist/todoist-api-typescript"
 import { todoistApi } from "@shared/config/todoist"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { IUpdateTask } from "./taskServices.d"
+import { ITaskFilter, IUpdateTask } from "./taskServices.d"
+import { convertFilterToQuery } from "../lib/taskHelpers"
 
-export const useTasks = (filter?: string) => {
+export const useTasks = ({ filter, projectId }: ITaskFilter) => {
   return useQuery({
-    queryKey: ['tasks', filter],
-    queryFn: () => todoistApi.getTasks({ filter }),
+    queryKey: ['tasks', filter, projectId],
+    queryFn: () => todoistApi.getTasks(convertFilterToQuery(filter, projectId)),
     staleTime: 1000 * 60 * 5,
   })
 }

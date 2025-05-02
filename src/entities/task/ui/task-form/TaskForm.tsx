@@ -63,13 +63,15 @@ export const TaskForm: FC<IProps> = (props) => {
         inputRef={firstInputRef}
         value={form.content}
         required
-        placeholder='Название'
+        placeholder='Введите название задачи'
+        label='Название'
         onUpdate={(value) => handlerChange(value, 'content')}
       />
 
       <Input
         value={form.date}
         type='date'
+        label='Дата'
         onUpdate={(value) => handlerChange(value, 'date')}
       />
 
@@ -77,6 +79,7 @@ export const TaskForm: FC<IProps> = (props) => {
         value={form.timeStart}
         type='time'
         className='_short'
+        label='Время начала'
         onUpdate={(value) => handlerChange(value, 'timeStart')}
       />
 
@@ -84,6 +87,7 @@ export const TaskForm: FC<IProps> = (props) => {
         value={form.timeEnd}
         type='time'
         className='_short'
+        label='Время окончания'
         onUpdate={(value) => handlerChange(value, 'timeEnd')}
       />
 

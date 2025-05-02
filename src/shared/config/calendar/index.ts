@@ -1,4 +1,4 @@
-export const FIRST_COLUMN_WIDTH = 60
+export const FIRST_COLUMN_WIDTH = 70
 export const CELL_HEIGHT = 25
 
 export type TTimeSlot =

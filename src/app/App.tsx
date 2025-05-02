@@ -10,7 +10,7 @@ export const App: FC = () => {
   const queryClient = new QueryClient()
 
   return (
-    <div className='app' data-theme={theme}>
+    <div id='app' className='app' data-theme={theme}>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>

@@ -3,7 +3,6 @@ import './CalendarHeader.css'
 import { useCalendarStore } from '../../model/calendarStore';
 import { Button } from '@shared/ui/button';
 import { Switcher } from '@shared/ui/switcher';
-import { AddTaskButton } from '@features/add-task';
 import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar';
 
 export const CalendarHeader: FC = () => {
@@ -12,22 +11,13 @@ export const CalendarHeader: FC = () => {
 
   return (
     <div className="calendar-header" style={{paddingLeft: FIRST_COLUMN_WIDTH}}>
-      <AddTaskButton/>
-
-      <p className="calendar-header__title">{month}</p>
-
       <div className="calendar-header__arrows">
         <Button iconBefore="angle-left" onClick={prevWeek}/>
+        <Button iconBefore="calendar-day" onClick={resetWeek}/>
         <Button iconBefore="angle-right" onClick={nextWeek}/>
       </div>
 
-      <Button
-        iconBefore="calendar-day"
-        className='calendar-header__today-button'
-        onClick={resetWeek}
-      >
-        Сегодня
-      </Button>
+      <p className="calendar-header__title">{month}</p>
 
       <Switcher
         defaultValue='week'

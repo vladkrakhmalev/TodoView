@@ -1,4 +1,5 @@
 .sidebar {
+  position: relative;
   padding: 20px;
   display: flex;
   gap: 20px;
@@ -8,7 +9,14 @@
   background-color: var(--bg-primary);
   border-right: 1px solid var(--border-light);
   transition: width 0.3s ease;
-  overflow: hidden;
+}
+
+.sidebar__toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  padding: 10px !important;
 }
 
 .sidebar__logo-img {
@@ -20,29 +28,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
-
-.sidebar__menu-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: 500;
-  transition: all 0.2s ease;
-  background-color: var(--bg-primary);
-  overflow: hidden;
-}
-
-.sidebar__menu-item:hover,
-.sidebar__menu-item--active {
-  background-color: var(--bg-secondary);
-}
-
-.sidebar__menu-icon {
-  margin-right: 12px;
-  font-size: 18px;
 }
 
 .sidebar__footer {

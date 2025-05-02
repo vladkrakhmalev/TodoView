@@ -1,0 +1,15 @@
+.task-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.task-list__empty {
+  color: var(--text-secondary);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 

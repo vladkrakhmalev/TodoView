@@ -4,7 +4,7 @@
   gap: 5px;
   padding: 5px;
   border-radius: 10px;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-light);
 }
 
 .switcher__item {
@@ -15,20 +15,16 @@
 }
 
 .switcher__item:hover {
-  background-color: var(--bg-secondary-hover);
+  background-color: var(--bg-primary);
   cursor: pointer;
 }
 
 .switcher__item._active {
-  background-color: var(--color-primary);
+  background-color: var(--bg-primary);
   cursor: default;
 }
 
 .switcher__item-title {
   transition: .2s;
   color: var(--text-primary);
-} 
-
-.switcher__item._active .switcher__item-title {
-  color: var(--color-white);
 }

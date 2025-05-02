@@ -2,6 +2,8 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
+// TODO: добавить тесты на размеры
+
 describe('Button', () => {
   it('should render button with text', () => {
     render(<Button>Click me</Button>)

@@ -1,36 +1,41 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '@shared/ui/button';
 import { Modal } from '@shared/ui/modal';
 import { TaskForm, ITaskForm, useAddTask, convertFormToTask, } from '@entities/task';
 
-export const AddTaskButton: FC = () => {
+interface IProps {
+  long?: boolean
+  projectId?: string
+}
+
+export const AddTaskButton: FC<IProps> = ({ long = false, projectId }) => {
   const { mutateAsync: addTask, isPending } = useAddTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const firstInputRef = useRef<HTMLInputElement>(null)
 
-  const handlerOpen = ( ) => {
+  const handlerOpen = () => {
     setIsOpen(true)
-    firstInputRef.current?.focus()
   }
 
   const handlerSubmit = async (form: ITaskForm) => {
     const newTask = convertFormToTask(form)
-    await addTask(newTask)
+    await addTask({ ...newTask, projectId })
     setIsOpen(false)
   }
 
   return (<>
     <Button
-      variant='primary'
+      variant={long ? 'secondary' : 'primary'}
       iconBefore='plus'
       className='add-task'
+      fullWidth={long}
       onClick={handlerOpen}
-    />
+    >
+      {long ? 'Добавить задачу' : ''}
+    </Button>
 
     <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <TaskForm
         title='Добавить задачу'
-        firstInputRef={firstInputRef}
         isLoading={isPending}
         onSubmit={handlerSubmit}
       />

@@ -1,21 +1,18 @@
 import { FC, useMemo } from 'react'
 import './TaskCard.css'
-import { Task } from '@doist/todoist-api-typescript'
+import { Project, Task } from '@doist/todoist-api-typescript'
 import { CompleteTask } from '@features/complete-task'
-import { useProjects } from '@entities/project'
 import { getTimeDiapason } from '@shared/lib/time'
 
 interface IProps {
   task: Task
+  projects: Project[]
 }
 
-export const TaskCard: FC<IProps> = ({ task }) => {
-  const { data } = useProjects()
+export const TaskCard: FC<IProps> = ({ task, projects }) => {
   const taskProject = useMemo(() => {
-    return data?.results?.find(project => project.id === task.projectId)
-  }, [data, task.projectId])
-
-  console.log(task.due?.datetime, task.duration)
+    return projects.find(project => project.id === task.projectId)
+  }, [projects, task.projectId])
 
   return (
     <div className="task-card">

@@ -15,7 +15,7 @@
   line-height: 1.2;
   overflow: hidden;
   transition: .2s;
-  box-shadow: 0 0 5px var(--swadow-primary);
+  box-shadow: 0 0 5px var(--shadow-primary);
 }
 
 .task-calendar-card:hover {

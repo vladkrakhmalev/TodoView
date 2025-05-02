@@ -12,7 +12,7 @@ const NotFoundPage: FC = () => {
         Похоже, что страница, которую вы ищете, не существует или была перемещена.
       </p>
       <Link 
-        to={routerConfig.calendar} 
+        to={routerConfig.today} 
         className="not-found-button"
       >
         Вернуться на главную

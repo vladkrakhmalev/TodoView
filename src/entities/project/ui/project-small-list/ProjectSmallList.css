@@ -1,0 +1,50 @@
+.project-small-list {
+  overflow: hidden;
+}
+
+.project-small-list__header {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: auto 1fr auto auto;
+  border-radius: 10px;
+  align-items: center;
+  padding: 7px 12px;
+  background-color: transparent;
+  transition: .2s;
+}
+
+.project-small-list__header._active,
+.project-small-list__header:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+}
+
+.project-small-list__title {
+  margin-left: 8px;
+}
+
+.project-small-list__body {
+  margin-left: 43px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: .2s;
+  padding: 0;
+  opacity: 0;
+}
+
+.project-small-list__body._open {
+  padding: 10px 0;
+  opacity: 1;
+}
+
+.project-small-list__item {
+  cursor: pointer;
+  max-width: max-content;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.project-small-list__item:hover {
+  color: var(--text-secondary);
+}

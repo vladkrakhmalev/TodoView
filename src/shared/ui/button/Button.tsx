@@ -6,6 +6,7 @@ import { Spiner } from '../spiner';
 interface IProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
   variant?: 'primary' | 'secondary' | 'danger' | 'transparent'
+  size?: 'small' | 'medium' | 'big'
   iconBefore?: string
   iconAfter?: string
   fullWidth?: boolean
@@ -17,6 +18,7 @@ export const Button: FC<IProps> = (props) => {
   const {
     children,
     variant = 'secondary',
+    size = 'medium',
     iconBefore,
     iconAfter,
     className,
@@ -26,8 +28,16 @@ export const Button: FC<IProps> = (props) => {
     ...rest
   } = props
 
+  const classes = clsx(
+    'button',
+    '_' + variant,
+    fullWidth && '_full',
+    size && '_' + size,
+    className,
+  )
+
   return (
-    <button disabled={disabled || isLoading} className={clsx('button', '_' + variant, fullWidth && '_full', className)} {...rest}>
+    <button disabled={disabled || isLoading} className={classes} {...rest}>
       {iconBefore && <i data-testid="icon-before" className={'button__icon fi fi-rr-' + iconBefore}/>}
       {children}
       {iconAfter && <i data-testid="icon-after" className={'button__icon fi fi-rr-' + iconAfter}/>}

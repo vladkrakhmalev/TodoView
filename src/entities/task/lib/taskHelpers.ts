@@ -2,7 +2,7 @@ import { Task, AddTaskArgs } from "@doist/todoist-api-typescript";
 import { getDueString, getDuration, getTimeByDuration, getTimeByString } from "@shared/lib/time"
 import dayjs from "@shared/config/dayjs";
 import { IDayWithTasks, ITaskForm, IWeekdayWithTasks } from "../model/task"
-import { IUpdateTask } from "../model/taskServices.d";
+import { IUpdateTask, ITaskFilter } from "../model/taskServices.d";
 import { TIMES_WITH_HALF } from "@shared/config/calendar";
 
 export const convertFormToTask = (form: ITaskForm): AddTaskArgs => {
@@ -89,4 +89,11 @@ export const getWeekdaysWithTasks = (tasks: Task[] = []): IWeekdayWithTasks => {
   })
 
   return weekdays
+}
+
+export const convertFilterToQuery = (filter?: string, projectId?: string) => {
+  const query: ITaskFilter = {}
+  if (filter) query.filter = filter
+  if (projectId) query.projectId = projectId
+  return query
 }

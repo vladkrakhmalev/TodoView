@@ -2,20 +2,21 @@ export const routerConfig = {
   main: '/main',
   today: '/today',
   calendar: '/calendar',
+  projects: '/projects',
+  project: '/projects/:id',
   login: '/login',
   redirectLogin: '/redirect-login',
   notFound: '/404',
 }
 
 export interface ISidebarMenuItem {
-  path: string
+  path?: string
   name: string
   icon: string
 }
 
 export const sidebarMenu: ISidebarMenuItem[] = [
   {
-    path: routerConfig.main,
     name: 'Главная',
     icon: 'home'
   },

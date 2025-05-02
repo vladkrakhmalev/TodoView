@@ -1,0 +1,29 @@
+.dialog {
+  position: relative;
+}
+
+.dialog__trigger {
+  cursor: pointer;
+}
+
+.dialog__container {
+  position: absolute;
+  top: calc(100% + 5px);
+  right: 0;
+  min-width: 150px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--bg-primary);
+  box-shadow: 0 0 10px var(--shadow-secondary);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+  transform: translateY(-10px) scale(.9);
+}
+
+.dialog__container._open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}

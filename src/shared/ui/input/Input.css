@@ -11,7 +11,7 @@
 .input__component {
   width: 100%;
   border: 1px solid transparent;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-light);
   padding: 10px;
   border-radius: var(--border-radius);
   outline: none;
@@ -21,7 +21,7 @@
 
 .input__component:focus,
 .input__component:hover {
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--border-light);
 }
 
 .input__component::placeholder {

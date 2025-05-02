@@ -1,0 +1,39 @@
+.project-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-secondary);
+  transition: .2s;
+  text-decoration: none;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  background-color: var(--bg-secondary-hover);
+}
+
+.project-card__skeleton {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-light);
+  transition: .2s;
+}
+
+.project-card__skeleton-title {
+  width: 50%;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--bg-primary);
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

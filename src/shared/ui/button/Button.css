@@ -33,7 +33,7 @@
 }
 
 .button._transparent {
-  background-color: transparent;
+  background-color: var(--bg-primary);
 }
 
 .button._transparent:not(:disabled):hover {
@@ -49,11 +49,20 @@
   background-color: var(--bg-danger-hover);
 }
 
+.button._small {
+  padding: 5px 10px;
+}
+
+.button._big {
+  padding: 15px 20px;
+}
+
 .button._full {
   width: 100%;
 }
 
 .button__icon {
+  margin-top: 2px;
   line-height: 1;
   color: inherit;
 }
