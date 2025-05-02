@@ -1,7 +1,7 @@
 export const routerConfig = {
   main: '/main',
+  today: '/today',
   calendar: '/calendar',
-  settings: '/settings',
   login: '/login',
   redirectLogin: '/redirect-login',
   notFound: '/404',
@@ -20,13 +20,13 @@ export const sidebarMenu: ISidebarMenuItem[] = [
     icon: 'home'
   },
   {
+    path: routerConfig.today,
+    name: 'Сегодня',
+    icon: 'calendar-day'
+  },
+  {
     path: routerConfig.calendar,
     name: 'Календарь',
     icon: 'calendar'
   },
-  {
-    path: routerConfig.settings,
-    name: 'Настройки',
-    icon: 'settings'
-  }
 ]

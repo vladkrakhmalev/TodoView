@@ -69,3 +69,13 @@ export const getTimeByDuration = (dateStr?: string | null, duration?: number): s
     return ''
   }
 }
+
+export const getTimeDiapason = (dateStr?: string | null, duration?: number): string => {
+  let resultDiapason = getTimeByString(dateStr)
+
+  if (duration) {
+    resultDiapason += ` - ${getTimeByDuration(dateStr, duration)}`
+  }
+
+  return resultDiapason
+}

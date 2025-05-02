@@ -38,9 +38,9 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toHaveClass('button _full')
   })
 
-  it('should render loading spinner when isLoading is true', () => {
+  it('should render loading spiner when isLoading is true', () => {
     render(<Button isLoading>Loading</Button>)
-    expect(screen.getByRole('button')).toContainElement(screen.getByTestId('spinner'))
+    expect(screen.getByRole('button')).toContainElement(screen.getByTestId('spiner'))
   })
 
   it('should be disabled when isLoading is true', () => {

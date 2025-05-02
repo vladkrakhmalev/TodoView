@@ -1,31 +1,43 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, useMemo } from 'react'
 import './TaskCard.css'
-import { Task } from '@doist/todoist-api-typescript';
-import { CELL_HEIGHT } from '@shared/config/calendar';
+import { Task } from '@doist/todoist-api-typescript'
+import { CompleteTask } from '@features/complete-task'
+import { useProjects } from '@entities/project'
+import { getTimeDiapason } from '@shared/lib/time'
 
 interface IProps {
   task: Task
-  completeTask?: ReactNode
-  draggableTask?: ReactNode
-  resizeTask?: ReactNode
 }
 
-export const TaskCard: FC<IProps> = ({ task, completeTask, draggableTask, resizeTask }) => {
+export const TaskCard: FC<IProps> = ({ task }) => {
+  const { data } = useProjects()
+  const taskProject = useMemo(() => {
+    return data?.results?.find(project => project.id === task.projectId)
+  }, [data, task.projectId])
 
-  const style = useMemo(() => {
-    return { height: (task.duration?.amount || 30) / 30 * CELL_HEIGHT - 4 + 'px' }
-  }, [task])
+  console.log(task.due?.datetime, task.duration)
 
   return (
-    <div data-task-id={task.id} className='task-card' style={style}>
-      { completeTask }
-      { task.content }
+    <div className="task-card">
+      <CompleteTask taskId={task.id} size={20} />
 
-      <div className="task-card__draggable">
-        { draggableTask }
+      <div className="task-card__content">
+        <div className="task-card__title">{task.content}</div>
+
+        <div className="task-card__details">
+          {task.due &&
+            <span className="task-card__time">
+              {getTimeDiapason(task.due.datetime, task.duration?.amount)}
+            </span>
+          }
+
+          {taskProject &&
+            <span className="task-card__project">
+              {taskProject.name}
+            </span>
+          }
+        </div>
       </div>
-
-      { resizeTask }
     </div>
-  );
-};
+  )
+} 

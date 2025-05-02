@@ -23,7 +23,10 @@ export const MainLayout: FC = () => {
   return (
     <div className="main-layout">
       <Sidebar/>
-      <Outlet/>
+
+      <div className="main-layout__content">
+        <Outlet/>
+      </div>
     </div>
   )
 }

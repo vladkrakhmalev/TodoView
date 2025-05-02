@@ -1,1 +1,1 @@
-export { getDuration, getDueString, getTimeByString, getTimeByDuration } from './timeHelpers';
+export { getDuration, getDueString, getTimeByString, getTimeByDuration, getTimeDiapason } from './timeHelpers';

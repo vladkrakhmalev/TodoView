@@ -1,4 +1,13 @@
-.spiner {
+.spiner._full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.spiner__icon {
+  display: block;
   border: solid var(--text-primary);
   border-bottom-color: transparent;
   border-radius: 50%;
@@ -7,7 +16,7 @@
   animation: rotation 1s linear infinite;
 }
 
-.spiner._contrast {
+.spiner__icon._contrast {
   border-color: var(--text-contrast);
   border-bottom-color: transparent;
 }

@@ -1,44 +1,42 @@
 .task-card {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  gap: 5px;
-  grid-template-columns: auto 1fr;  
-  align-items: start;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
   background-color: var(--bg-secondary);
-  border-radius: var(--border-radius);
-  padding: 3px 10px 3px 5px;
-  font-size: 14px;
-  user-select: none;
-  line-height: 1.2;
-  overflow: hidden;
-  transition: .2s;
-  box-shadow: 0 0 5px var(--swadow-primary);
+  border-radius: 8px;
+  padding: 14px;
+  transition: background-color 0.2s;
+  cursor: pointer;
 }
 
 .task-card:hover {
-  cursor: pointer;
-  box-shadow: 0 0 15px var(--swadow-primary);
+  background-color: var(--bg-secondary-hover);
 }
 
-.task-card:hover .task-card__draggable {
-  opacity: .3;
-  transform: translate(0);
+.task-card__title {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.4;
+  word-break: break-word;
+  flex-grow: 1;
+  margin-right: 8px;
 }
 
-.task-card__draggable {
-  background-color: var(--bg-secondary);
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 4px 4px;
-  opacity: 0;
-  transform: translate(10px);
-  transition: .2s;
+.task-card__details {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
 }
 
-.task-card__draggable:hover {
-  opacity: 1 !important;
+.task-card__time {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.task-card__project {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
 }

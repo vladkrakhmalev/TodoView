@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { TaskCard } from '@entities/task';
+import { TaskCalendarCard } from '@entities/task';
 import { useDraggable } from '@dnd-kit/core';
 import { Task } from '@doist/todoist-api-typescript';
 
@@ -28,7 +28,7 @@ export const DragTaskDraggable: FC<IProps> = ({ task, completeTask, resizeTask }
 
   return (
     <div ref={setNodeRef} style={style}>
-      <TaskCard
+      <TaskCalendarCard
         task={task}
         completeTask={completeTask}
         draggableTask={draggableTask}

@@ -5,6 +5,7 @@ import { CalendarPageLazy } from "@pages/calendar"
 import { LoginPageLazy } from "@pages/login"
 import { RedirectLoginPageLazy } from "@pages/redirect-login"
 import { NotFoundPageLazy } from "@pages/not-found"
+import { TodayPageLazy } from "@pages/today"
 import { MainLayout } from "@app/layouts/main-layout"
 
 const routes: IRoute[] = [
@@ -22,6 +23,10 @@ const routes: IRoute[] = [
       {
         path: config.calendar,
         element: <CalendarPageLazy/>,
+      },
+      {
+        path: config.today,
+        element: <TodayPageLazy/>,
       },
     ]
   },
