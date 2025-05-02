@@ -19,7 +19,7 @@ export const Modal: FC<IProps> = ({ children, isOpen, position = 'center', onClo
   if (!isOpen) return null
 
   return createPortal(
-    <div role="dialog" className={classes} onClick={(event) => onClose && onClose(event)}>
+    <div data-testid="modal" className={classes} onClick={(event) => onClose && onClose(event)}>
       <div data-testid="modal-container" className='modal__container' onClick={(event) => event.stopPropagation()}>
         <i data-testid="modal-close" className='modal__close fi fi-rr-cross-small' onClick={onClose}/>
         {children}
