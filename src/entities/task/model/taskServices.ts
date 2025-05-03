@@ -1,11 +1,12 @@
 import { AddTaskArgs } from "@doist/todoist-api-typescript"
 import { todoistApi } from "@shared/config/todoist"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQueryClient } from "@tanstack/react-query"
 import { ITaskFilter, IUpdateTask } from "./taskServices.d"
 import { convertFilterToQuery } from "../lib/taskHelpers"
+import { useAuthQuery, useAuthMutation } from "@shared/config/tanstack-query"
 
 export const useTasks = ({ filter, projectId }: ITaskFilter) => {
-  return useQuery({
+  return useAuthQuery({
     queryKey: ['tasks', filter, projectId],
     queryFn: () => todoistApi.getTasks(convertFilterToQuery(filter, projectId)),
     staleTime: 1000 * 60 * 5,
@@ -14,7 +15,7 @@ export const useTasks = ({ filter, projectId }: ITaskFilter) => {
 
 export const useAddTask = () => {
   const queryClient = useQueryClient()
-  return useMutation({
+  return useAuthMutation({
     mutationFn: (task: AddTaskArgs) => todoistApi.addTask(task),
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['tasks'] })
   })
@@ -22,7 +23,7 @@ export const useAddTask = () => {
 
 export const useCompleteTask = () => {
   const queryClient = useQueryClient()
-  return useMutation({
+  return useAuthMutation({
     mutationFn: (id: string) => todoistApi.closeTask(id),
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   })
@@ -30,7 +31,7 @@ export const useCompleteTask = () => {
 
 export const useUpdateTask = () => {
   const queryClient = useQueryClient()
-  return useMutation({
+  return useAuthMutation({
     mutationFn: ({id, data}: IUpdateTask) => todoistApi.updateTask(id, data),
     onMutate: async (newTask) => {
       // Отменяем исходящие запросы, чтобы они не перезаписали наши оптимистичные обновления
@@ -71,7 +72,7 @@ export const useUpdateTask = () => {
 
 export const useDeleteTask = () => {
   const queryClient = useQueryClient()
-  return useMutation({
+  return useAuthMutation({
     mutationFn: (id: string) => todoistApi.deleteTask(id),
     onSettled: () => queryClient.invalidateQueries({ queryKey: ['tasks'] }),
   })
