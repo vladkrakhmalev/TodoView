@@ -29,16 +29,10 @@
   margin-top: 6px;
 }
 
-.task-card__time {
+.task-card__detail {
   display: inline-block;
   font-size: 14px;
   color: var(--text-secondary);
-}
-
-.task-card__project {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .task-card__skeleton {

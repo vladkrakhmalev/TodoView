@@ -1,7 +1,8 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode } from 'react';
 import './TaskCalendarCard.css'
 import { Task } from '@doist/todoist-api-typescript';
 import { CELL_HEIGHT } from '@shared/config/calendar';
+import { getTimeDiapason } from '@shared/lib/time';
 
 interface IProps {
   task: Task
@@ -11,21 +12,30 @@ interface IProps {
 }
 
 export const TaskCalendarCard: FC<IProps> = ({ task, completeTask, draggableTask, resizeTask }) => {
-
-  const style = useMemo(() => {
-    return { height: (task.duration?.amount || 30) / 30 * CELL_HEIGHT - 4 + 'px' }
-  }, [task])
+  const style = { height: (task.duration?.amount || 30) / 30 * CELL_HEIGHT - 4 + 'px' }
+  const timeDiapason = getTimeDiapason(task.due?.datetime, task.duration?.amount)
 
   return (
     <div data-task-id={task.id} className='task-calendar-card' style={style}>
-      { completeTask }
-      { task.content }
+      <p className="task-calendar-card__head">
+        <div className="task-calendar-card__complete">
+          {completeTask}
+        </div>
 
-      <div className="task-calendar-card__draggable">
-        { draggableTask }
-      </div>
+        <span className="task-calendar-card__title">
+          {task.content}
+        </span>
 
-      { resizeTask }
+        <span className="task-calendar-card__subtitle">
+          {timeDiapason}
+        </span>
+
+        <div className="task-calendar-card__draggable">
+          {draggableTask}
+        </div>
+      </p>
+
+      {resizeTask}
     </div>
   );
 };

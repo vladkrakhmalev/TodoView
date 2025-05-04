@@ -14,6 +14,8 @@ export const TaskCard: FC<IProps> = ({ task, projects }) => {
     return projects.find(project => project.id === task.projectId)
   }, [projects, task.projectId])
 
+  const timeDiapason = getTimeDiapason(task.due?.datetime, task.duration?.amount)
+
   return (
     <div className="task-card">
       <CompleteTask taskId={task.id} size={20} />
@@ -22,14 +24,14 @@ export const TaskCard: FC<IProps> = ({ task, projects }) => {
         <div className="task-card__title">{task.content}</div>
 
         <div className="task-card__details">
-          {task.due &&
-            <span className="task-card__time">
-              {getTimeDiapason(task.due.datetime, task.duration?.amount)}
+          {timeDiapason &&
+            <span className="task-card__detail">
+              {timeDiapason}
             </span>
           }
 
           {taskProject &&
-            <span className="task-card__project">
+            <span className="task-card__detail">
               {taskProject.name}
             </span>
           }
