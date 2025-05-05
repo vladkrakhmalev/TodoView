@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getDuration, getDueString, getTimeByString, getTimeByDuration } from './timeHelpers'
+import { getDuration, getDueString, getTimeByString, getTimeByDuration, getTimeDiapason } from './timeHelpers'
 
 describe('timeHelpers', () => {
   describe('getDuration', () => {
@@ -92,6 +92,34 @@ describe('timeHelpers', () => {
     it('should handle invalid inputs', () => {
       expect(getTimeByDuration('invalid', 30)).toBe('')
       expect(getTimeByDuration('2024-04-11T10:00:00Z', NaN)).toBe('')
+    })
+  })
+
+  describe('getTimeDiapason', () => {
+    it('should return empty string if dateStr is not provided', () => {
+      expect(getTimeDiapason()).toBe('')
+      expect(getTimeDiapason(null)).toBe('')
+      expect(getTimeDiapason('')).toBe('')
+    })
+
+    it('should return only start time if duration is not provided', () => {
+      expect(getTimeDiapason('2024-04-11T10:00:00Z')).toBe('10:00')
+      expect(getTimeDiapason('2024-04-11T15:30:00Z')).toBe('15:30')
+    })
+
+    it('should return time range when both date and duration are provided', () => {
+      expect(getTimeDiapason('2024-04-11T10:00:00Z', 30)).toBe('10:00 - 10:30')
+      expect(getTimeDiapason('2024-04-11T10:00:00Z', 60)).toBe('10:00 - 11:00')
+    })
+
+    it('should handle crossing midnight in time range', () => {
+      expect(getTimeDiapason('2024-04-11T23:30:00Z', 60)).toBe('23:30 - 00:30')
+      expect(getTimeDiapason('2024-04-11T23:45:00Z', 30)).toBe('23:45 - 00:15')
+    })
+
+    it('should handle invalid inputs', () => {
+      expect(getTimeDiapason('invalid', 30)).toBe('')
+      expect(getTimeDiapason('2024-04-11T10:00:00Z', NaN)).toBe('10:00')
     })
   })
 }) 

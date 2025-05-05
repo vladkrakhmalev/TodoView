@@ -115,6 +115,11 @@ export const getTimeByDuration = (dateStr?: string | null, duration?: number): s
  * getTimeDiapason('2024-04-11T10:00:00Z') // returns '10:00'
  */
 export const getTimeDiapason = (dateStr?: string | null, duration?: number): string => {
+  // Проверяем, является ли строка валидной датой
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr || '')) {
+    return ''
+  }
+
   let resultDiapason = getTimeByString(dateStr)
 
   if (duration) {
