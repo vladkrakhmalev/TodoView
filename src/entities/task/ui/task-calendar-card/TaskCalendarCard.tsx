@@ -17,7 +17,7 @@ export const TaskCalendarCard: FC<IProps> = ({ task, completeTask, draggableTask
 
   return (
     <div data-task-id={task.id} className='task-calendar-card' style={style}>
-      <p className="task-calendar-card__head">
+      <div className="task-calendar-card__head">
         <div className="task-calendar-card__complete">
           {completeTask}
         </div>
@@ -33,7 +33,7 @@ export const TaskCalendarCard: FC<IProps> = ({ task, completeTask, draggableTask
         <div className="task-calendar-card__draggable">
           {draggableTask}
         </div>
-      </p>
+      </div>
 
       {resizeTask}
     </div>
