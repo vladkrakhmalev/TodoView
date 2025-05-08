@@ -1,4 +1,5 @@
 export const routerConfig = {
+  home: '/',
   main: '/main',
   today: '/today',
   calendar: '/calendar',

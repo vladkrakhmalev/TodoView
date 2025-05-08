@@ -9,6 +9,7 @@ import { NotFoundPageLazy } from '@pages/not-found'
 import { TodayPageLazy } from '@pages/today'
 import { ProjectPageLazy } from '@pages/project'
 import { ProjectsPageLazy } from '@pages/projects'
+import { HomePageLazy } from '@pages/home'
 
 const routes: IRoute[] = [
   {
@@ -22,6 +23,10 @@ const routes: IRoute[] = [
   {
     element: <MainLayout />,
     children: [
+      {
+        path: config.home,
+        element: <HomePageLazy />,
+      },
       {
         path: config.today,
         element: <TodayPageLazy />,
