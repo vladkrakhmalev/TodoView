@@ -13,28 +13,25 @@ interface IProps {
 export const Modal: FC<IProps> = props => {
   const { children, isOpen, position = 'center', onClose } = props
 
-  const handleOpen = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation()
-    onClose?.(event)
-  }
-
   if (!isOpen) return null
 
   return createPortal(
     <button
       data-testid='modal'
       className={clsx('modal _open', '_' + position)}
-      onClick={event => onClose && onClose(event)}
+      onClick={event => onClose?.(event)}
     >
       <button
         data-testid='modal-container'
         className='modal__container'
-        onClick={handleOpen}
+        onClick={event => event.stopPropagation()}
       >
-        <i
-          data-testid='modal-close'
-          className='modal__close fi fi-rr-cross-small'
-        />
+        <button onClick={event => onClose?.(event)}>
+          <i
+            data-testid='modal-close'
+            className='modal__close fi fi-rr-cross-small'
+          />
+        </button>
         {children}
       </button>
     </button>,

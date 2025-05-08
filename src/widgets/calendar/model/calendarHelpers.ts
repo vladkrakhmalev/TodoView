@@ -1,6 +1,6 @@
 import dayjs from '@shared/config/dayjs'
 
-export const getWeekFilter = (startDate: dayjs.Dayjs) => {
+export const getWeekFilter = (startDate: dayjs.Dayjs): string => {
   let str = ''
   const today = dayjs().startOf('isoWeek')
   const firstDay = startDate.subtract(1, 'day').format('D MMMM')

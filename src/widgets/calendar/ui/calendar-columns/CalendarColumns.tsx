@@ -14,7 +14,7 @@ export const CalendarColumns: FC = () => {
   const { startDate } = useCalendarStore()
 
   const filter = useMemo(() => getWeekFilter(startDate), [startDate])
-  const { data, isLoading } = useTasks(filter)
+  const { data, isLoading } = useTasks({ filter })
   const weekdaysWithTasks = useMemo(
     () => getWeekdaysWithTasks(data?.results),
     [data]

@@ -18,7 +18,7 @@ export const UpdateProjectButton: FC<IProps> = ({ project }) => {
     setIsOpen(true)
   }
 
-  const handlerClose = (event: MouseEvent<HTMLDivElement>) => {
+  const handlerClose = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     setIsOpen(false)
   }
