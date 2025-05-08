@@ -1,10 +1,12 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from 'react'
 
 interface IDragTaskContext {
-  activeDroppableId: string | null;
+  activeDroppableId: string | null
 }
 
-const DragTaskContext = createContext<IDragTaskContext>({ activeDroppableId: null });
+const DragTaskContext = createContext<IDragTaskContext>({
+  activeDroppableId: null,
+})
 
-export const useDragTaskContext = () => useContext(DragTaskContext);
-export { DragTaskContext }; 
+export const useDragTaskContext = () => useContext(DragTaskContext)
+export { DragTaskContext }

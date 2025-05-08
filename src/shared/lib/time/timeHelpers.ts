@@ -1,8 +1,8 @@
-import dayjs from "@shared/config/dayjs";
+import dayjs from '@shared/config/dayjs'
 
 /**
  * Вычисляет продолжительность времени в минутах между двумя временными точками
- * @param timeStart - Время начала в формате "HH:mm" 
+ * @param timeStart - Время начала в формате "HH:mm"
  * @param timeEnd - Время окончания в формате "HH:mm"
  * @returns Продолжительность в минутах. Возвращает 0 если параметры невалидны
  * @example
@@ -11,21 +11,26 @@ import dayjs from "@shared/config/dayjs";
  */
 export const getDuration = (timeStart?: string, timeEnd?: string): number => {
   if (!timeStart || !timeEnd) return 0
-  
+
   const [hourStart, minuteStart] = timeStart.split(':').map(Number)
   const [hourEnd, minuteEnd] = timeEnd.split(':').map(Number)
-  
-  if (isNaN(hourStart) || isNaN(minuteStart) || isNaN(hourEnd) || isNaN(minuteEnd)) {
+
+  if (
+    isNaN(hourStart) ||
+    isNaN(minuteStart) ||
+    isNaN(hourEnd) ||
+    isNaN(minuteEnd)
+  ) {
     return 0
   }
 
   let duration = (hourEnd - hourStart) * 60 + (minuteEnd - minuteStart)
-  
+
   // Если время переходит через полночь
   if (duration < 0) {
     duration += 24 * 60
   }
-  
+
   return duration
 }
 
@@ -41,12 +46,12 @@ export const getDuration = (timeStart?: string, timeEnd?: string): number => {
 export const getDueString = (date?: string, time?: string): string => {
   if (!date && !time) return ''
   if (!date) return ''
-  
+
   let dueString = date
   if (time) {
     dueString += ` в ${time}`
   }
-  
+
   return dueString
 }
 
@@ -60,17 +65,19 @@ export const getDueString = (date?: string, time?: string): string => {
  */
 export const getTimeByString = (dateStr?: string | null): string => {
   if (!dateStr) return ''
-  
+
   try {
     // Проверяем, является ли строка валидной датой
-    if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr)) {
+    if (
+      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr)
+    ) {
       return ''
     }
 
     // Парсим дату в UTC
     const date = dayjs.utc(dateStr)
     if (!date.isValid()) return ''
-    
+
     return date.format('HH:mm')
   } catch {
     return ''
@@ -86,19 +93,24 @@ export const getTimeByString = (dateStr?: string | null): string => {
  * getTimeByDuration('2024-04-11T10:00:00Z', 90) // returns '11:30'
  * getTimeByDuration('2024-04-11T23:00:00Z', 120) // returns '01:00'
  */
-export const getTimeByDuration = (dateStr?: string | null, duration?: number): string => {
+export const getTimeByDuration = (
+  dateStr?: string | null,
+  duration?: number
+): string => {
   if (!dateStr || duration === undefined || isNaN(duration)) return ''
-  
+
   try {
     // Проверяем, является ли строка валидной датой
-    if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr)) {
+    if (
+      !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr)
+    ) {
       return ''
     }
 
     // Парсим дату в UTC
     const date = dayjs.utc(dateStr)
     if (!date.isValid()) return ''
-    
+
     return date.add(duration, 'minute').format('HH:mm')
   } catch {
     return ''
@@ -114,9 +126,16 @@ export const getTimeByDuration = (dateStr?: string | null, duration?: number): s
  * getTimeDiapason('2024-04-11T10:00:00Z', 90) // returns '10:00 - 11:30'
  * getTimeDiapason('2024-04-11T10:00:00Z') // returns '10:00'
  */
-export const getTimeDiapason = (dateStr?: string | null, duration?: number): string => {
+export const getTimeDiapason = (
+  dateStr?: string | null,
+  duration?: number
+): string => {
   // Проверяем, является ли строка валидной датой
-  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(dateStr || '')) {
+  if (
+    !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})?$/.test(
+      dateStr || ''
+    )
+  ) {
     return ''
   }
 

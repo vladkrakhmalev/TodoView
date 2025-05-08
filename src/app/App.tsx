@@ -1,9 +1,9 @@
-import './style/index.css';
-import { FC } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useTheme } from '@shared/lib/theme';
-import { RouterProvider } from 'react-router';
-import { router } from './router';
+import './style/index.css'
+import { FC } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useTheme } from '@shared/lib/theme'
+import { RouterProvider } from 'react-router'
+import { router } from './router'
 
 export const App: FC = () => {
   const { theme } = useTheme()
@@ -15,5 +15,5 @@ export const App: FC = () => {
         <RouterProvider router={router} />
       </QueryClientProvider>
     </div>
-  );
-};
+  )
+}

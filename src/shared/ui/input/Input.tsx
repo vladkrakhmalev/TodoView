@@ -1,7 +1,7 @@
-import { FC, InputHTMLAttributes, RefObject, useEffect, useState } from 'react';
-import './Input.css';
-import clsx from 'clsx';
-import dayjs from '@shared/config/dayjs';
+import { FC, InputHTMLAttributes, RefObject, useEffect, useState } from 'react'
+import './Input.css'
+import clsx from 'clsx'
+import dayjs from '@shared/config/dayjs'
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string | number
@@ -10,7 +10,15 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   onUpdate: (value: string) => void
 }
 
-export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onUpdate, ...rest }) => {
+export const Input: FC<IProps> = ({
+  value,
+  type,
+  label,
+  className,
+  inputRef,
+  onUpdate,
+  ...rest
+}) => {
   const [inputValue, setInputValue] = useState<string | number>(value || '')
   const inputId = `input-${Math.random().toString(36).substr(2, 9)}`
 
@@ -29,22 +37,22 @@ export const Input: FC<IProps> = ({ value, type, label, className, inputRef, onU
 
   return (
     <div className={clsx('input', className)}>
-      {label &&
+      {label && (
         <label htmlFor={inputId} className='input__label'>
           {label}
         </label>
-      }
+      )}
 
       <input
         id={inputId}
-        data-testid="input"
+        data-testid='input'
         ref={inputRef}
         className='input__component'
         value={value ?? inputValue}
         type={type}
         onChange={handlerChange}
         {...rest}
-        />
+      />
     </div>
-  );
-};
+  )
+}

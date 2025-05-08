@@ -1,7 +1,7 @@
-import { FC, ReactNode, useState } from "react"
+import { FC, ReactNode, useState } from 'react'
 import './Dialog.css'
-import { useOutsideClick } from "@shared/lib/dom"
-import clsx from "clsx"
+import { useOutsideClick } from '@shared/lib/dom'
+import clsx from 'clsx'
 
 interface IProps {
   trigger: ReactNode
@@ -9,27 +9,23 @@ interface IProps {
 }
 
 export const Dialog: FC<IProps> = ({ trigger, children }) => {
-  const [isOpen, setIsOpen] = useState(false)  
+  const [isOpen, setIsOpen] = useState(false)
 
   const ref = useOutsideClick(() => setIsOpen(false))
-  
+
   return (
-    <div
-      className="dialog"
-      ref={ref}
-      data-testid="dialog"
-    >
-      <div
-        className="dialog__trigger"
-        data-testid="dialog-trigger"
+    <div className='dialog' ref={ref} data-testid='dialog'>
+      <button
+        className='dialog__trigger'
+        data-testid='dialog-trigger'
         onClick={() => setIsOpen(prev => !prev)}
       >
         {trigger}
-      </div>
+      </button>
 
       <div
-        className={clsx("dialog__container", isOpen && "_open")}
-        data-testid="dialog-container"
+        className={clsx('dialog__container', isOpen && '_open')}
+        data-testid='dialog-container'
       >
         {children}
       </div>

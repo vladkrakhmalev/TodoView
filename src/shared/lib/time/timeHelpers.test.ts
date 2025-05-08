@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { getDuration, getDueString, getTimeByString, getTimeByDuration, getTimeDiapason } from './timeHelpers'
+import {
+  getDuration,
+  getDueString,
+  getTimeByString,
+  getTimeByDuration,
+  getTimeDiapason,
+} from './timeHelpers'
 
 describe('timeHelpers', () => {
   describe('getDuration', () => {
@@ -122,4 +128,4 @@ describe('timeHelpers', () => {
       expect(getTimeDiapason('2024-04-11T10:00:00Z', NaN)).toBe('10:00')
     })
   })
-}) 
+})

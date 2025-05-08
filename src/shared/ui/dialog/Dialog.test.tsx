@@ -47,12 +47,12 @@ describe('Dialog', () => {
   it('should properly render the passed content', () => {
     render(
       <Dialog trigger={<button>Open</button>}>
-        <div data-testid="custom-content">Test content</div>
+        <div data-testid='custom-content'>Test content</div>
       </Dialog>
     )
 
     fireEvent.click(screen.getByTestId('dialog-trigger'))
-    
+
     expect(screen.getByTestId('custom-content')).toBeInTheDocument()
     expect(screen.getByText('Test content')).toBeInTheDocument()
   })

@@ -1,8 +1,8 @@
-import { FC, useEffect } from "react"
-import { Outlet, useNavigate } from "react-router"
-import "./MainLayout.css"
-import { useAuth } from "@entities/auth"
-import { Sidebar } from "@widgets/sidebar"
+import { FC, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router'
+import './MainLayout.css'
+import { useAuth } from '@entities/auth'
+import { Sidebar } from '@widgets/sidebar'
 
 export const MainLayout: FC = () => {
   const { isAuth } = useAuth()
@@ -14,18 +14,25 @@ export const MainLayout: FC = () => {
 
   if (isAuth === null) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
         Загрузка...
       </div>
     )
   }
 
   return (
-    <div className="main-layout">
-      <Sidebar/>
+    <div className='main-layout'>
+      <Sidebar />
 
-      <div className="main-layout__content">
-        <Outlet/>
+      <div className='main-layout__content'>
+        <Outlet />
       </div>
     </div>
   )

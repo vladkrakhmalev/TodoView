@@ -1,8 +1,8 @@
-import { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react';
+import { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react'
 import './TaskForm.css'
-import { Button } from '@shared/ui/button';
-import { Input } from '@shared/ui/input';
-import { ITaskForm } from '../../model/task';
+import { Button } from '@shared/ui/button'
+import { Input } from '@shared/ui/input'
+import { ITaskForm } from '../../model/task'
 
 interface IProps {
   title: string
@@ -20,21 +20,18 @@ const initialForm: ITaskForm = {
   timeEnd: '',
 }
 
-export const TaskForm: FC<IProps> = (props) => {
-  const {
-    title,
-    defaultForm,
-    isLoading,
-    isDeleting,
-    onSubmit,
-    onDelete,
-  } = props
-  
-  const [form, setForm] = useState<ITaskForm>({ ...initialForm, ...defaultForm })
+export const TaskForm: FC<IProps> = props => {
+  const { title, defaultForm, isLoading, isDeleting, onSubmit, onDelete } =
+    props
+
+  const [form, setForm] = useState<ITaskForm>({
+    ...initialForm,
+    ...defaultForm,
+  })
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   const handlerChange = (value: string, field: keyof ITaskForm) => {
-    setForm({...form, [field]: value})
+    setForm({ ...form, [field]: value })
   }
 
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -65,14 +62,14 @@ export const TaskForm: FC<IProps> = (props) => {
         required
         placeholder='Введите название задачи'
         label='Название'
-        onUpdate={(value) => handlerChange(value, 'content')}
+        onUpdate={value => handlerChange(value, 'content')}
       />
 
       <Input
         value={form.date}
         type='date'
         label='Дата'
-        onUpdate={(value) => handlerChange(value, 'date')}
+        onUpdate={value => handlerChange(value, 'date')}
       />
 
       <Input
@@ -80,7 +77,7 @@ export const TaskForm: FC<IProps> = (props) => {
         type='time'
         className='_short'
         label='Время начала'
-        onUpdate={(value) => handlerChange(value, 'timeStart')}
+        onUpdate={value => handlerChange(value, 'timeStart')}
       />
 
       <Input
@@ -88,26 +85,28 @@ export const TaskForm: FC<IProps> = (props) => {
         type='time'
         className='_short'
         label='Время окончания'
-        onUpdate={(value) => handlerChange(value, 'timeEnd')}
+        onUpdate={value => handlerChange(value, 'timeEnd')}
       />
 
-      <div className="task-form__buttons">
+      <div className='task-form__buttons'>
         <Button
           isLoading={isLoading}
           iconBefore='disk'
           variant='primary'
           fullWidth
-        >Сохранить</Button>
+        >
+          Сохранить
+        </Button>
 
-        {onDelete && 
+        {onDelete && (
           <Button
             isLoading={isDeleting}
             iconBefore='trash'
             variant='danger'
             onClick={handlerDangerClick}
           />
-        }
+        )}
       </div>
     </form>
-  );
-};
+  )
+}

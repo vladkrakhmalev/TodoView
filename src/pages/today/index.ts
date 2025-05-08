@@ -1,1 +1,1 @@
-export { TodayPageLazy } from './ui/TodayPageLazy' 
+export { TodayPageLazy } from './ui/TodayPageLazy'

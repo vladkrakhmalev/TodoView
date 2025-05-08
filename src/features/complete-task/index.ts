@@ -1,1 +1,1 @@
-export { CompleteTask } from './ui/CompleteTask';
+export { CompleteTask } from './ui/CompleteTask'
