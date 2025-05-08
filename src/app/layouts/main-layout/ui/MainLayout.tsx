@@ -1,16 +1,26 @@
 import { FC, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router'
+import { Outlet, useNavigate, useSearchParams } from 'react-router'
 import './MainLayout.css'
 import { useAuth } from '@entities/auth'
 import { Sidebar } from '@widgets/sidebar'
+import { routerConfig } from '@shared/config/router'
 
 export const MainLayout: FC = () => {
   const { isAuth } = useAuth()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  // TODO Отрефакторить то, что связано с авторизацией
 
   useEffect(() => {
-    if (!isAuth) navigate('/login')
-  }, [isAuth, navigate])
+    const code = searchParams.get('code')
+
+    if (code) {
+      navigate(`${routerConfig.redirectLogin}?code=${code}`)
+    } else if (!isAuth) {
+      navigate('/login')
+    }
+  }, [isAuth, searchParams, navigate])
 
   if (isAuth === null) {
     return (
