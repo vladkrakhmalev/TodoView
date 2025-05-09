@@ -4,8 +4,10 @@ import {
   TODOIST_CLIENT_SECRET,
   TODOIST_REDIRECT_URI,
 } from '@shared/config/todoist'
+import { useNavigate } from 'react-router'
 
 export const useProcessOAuth = () => {
+  const navigate = useNavigate()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>(
     'loading'
   )
@@ -45,8 +47,8 @@ export const useProcessOAuth = () => {
 
         setStatus('success')
         setTimeout(() => {
-          window.location.href = '/calendar'
-        }, 1500)
+          navigate('/calendar')
+        }, 500)
       } catch (err) {
         setStatus('error')
         setError('Произошла ошибка при обработке авторизации')
@@ -55,7 +57,7 @@ export const useProcessOAuth = () => {
     }
 
     processOAuthCallback()
-  }, [])
+  }, [navigate])
 
   return { status, error }
 }
