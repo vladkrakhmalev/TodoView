@@ -3,8 +3,6 @@ name: Deploy
 on:
   push:
     branches: ['main']
-  pull_request:
-    branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -39,13 +37,6 @@ jobs:
         if: always()
       - name: Build
         run: pnpm build
-        env:
-          VITE_TODOIST_CLIENT_ID: ${{ secrets.TODOIST_CLIENT_ID }}
-          VITE_TODOIST_CLIENT_SECRET: ${{ secrets.TODOIST_CLIENT_SECRET }}
-          VITE_TODOIST_REDIRECT_URI: ${{ secrets.TODOIST_REDIRECT_URI }}
-          VITE_TODOIST_STATE_STRING: ${{ secrets.TODOIST_STATE_STRING }}
-      - name: Debug env
-        run: echo "ENV is $VITE_TODOIST_CLIENT_ID, $VITE_TODOIST_CLIENT_SECRET, $VITE_TODOIST_REDIRECT_URI, $VITE_TODOIST_STATE_STRING"
         env:
           VITE_TODOIST_CLIENT_ID: ${{ secrets.TODOIST_CLIENT_ID }}
           VITE_TODOIST_CLIENT_SECRET: ${{ secrets.TODOIST_CLIENT_SECRET }}
