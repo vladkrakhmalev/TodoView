@@ -44,6 +44,13 @@ jobs:
           VITE_TODOIST_CLIENT_SECRET: ${{ secrets.TODOIST_CLIENT_SECRET }}
           VITE_TODOIST_REDIRECT_URI: ${{ secrets.TODOIST_REDIRECT_URI }}
           VITE_TODOIST_STATE_STRING: ${{ secrets.TODOIST_STATE_STRING }}
+      - name: Debug env
+        run: echo "ENV is $VITE_TODOIST_CLIENT_ID, $VITE_TODOIST_CLIENT_SECRET, $VITE_TODOIST_REDIRECT_URI, $VITE_TODOIST_STATE_STRING"
+        env:
+          VITE_TODOIST_CLIENT_ID: ${{ secrets.TODOIST_CLIENT_ID }}
+          VITE_TODOIST_CLIENT_SECRET: ${{ secrets.TODOIST_CLIENT_SECRET }}
+          VITE_TODOIST_REDIRECT_URI: ${{ secrets.TODOIST_REDIRECT_URI }}
+          VITE_TODOIST_STATE_STRING: ${{ secrets.TODOIST_STATE_STRING }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
