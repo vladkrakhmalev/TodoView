@@ -6,11 +6,12 @@ import clsx from 'clsx'
 interface IProps {
   trigger: ReactNode
   children: ReactNode
+  position?: 'center' | 'left' | 'right'
 }
 
-export const Dialog: FC<IProps> = ({ trigger, children }) => {
+export const Dialog: FC<IProps> = props => {
+  const { trigger, children, position = 'left' } = props
   const [isOpen, setIsOpen] = useState(false)
-
   const ref = useOutsideClick(() => setIsOpen(false))
 
   return (
@@ -24,7 +25,7 @@ export const Dialog: FC<IProps> = ({ trigger, children }) => {
       </button>
 
       <div
-        className={clsx('dialog__container', isOpen && '_open')}
+        className={clsx('dialog__container', isOpen && '_open', '_' + position)}
         data-testid='dialog-container'
       >
         {children}
