@@ -62,4 +62,16 @@ describe('Spiner', () => {
     const spiner = screen.getByTestId('spiner')
     expect(spiner).not.toHaveClass('_full')
   })
+
+  it('should render fullScreen spiner', () => {
+    render(<Spiner fullScreen />)
+    const spiner = screen.getByTestId('spiner')
+    expect(spiner).toHaveClass('_full-screen')
+  })
+
+  it('should not render fullScreen spiner when fullScreen prop is false', () => {
+    render(<Spiner fullScreen={false} />)
+    const spiner = screen.getByTestId('spiner')
+    expect(spiner).not.toHaveClass('_full-screen')
+  })
 })

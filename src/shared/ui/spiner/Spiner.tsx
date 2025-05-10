@@ -5,12 +5,13 @@ import clsx from 'clsx'
 interface IProps {
   size?: number
   full?: boolean
+  fullScreen?: boolean
   contrast?: boolean
   className?: string
 }
 
 export const Spiner: FC<IProps> = props => {
-  const { size = 30, full, contrast, className } = props
+  const { size = 30, full, fullScreen, contrast, className } = props
 
   const style = {
     width: `${size}px`,
@@ -18,11 +19,17 @@ export const Spiner: FC<IProps> = props => {
     borderWidth: `${size / 8}px`,
   }
 
-  const classes = clsx('spiner__icon ', contrast && '_contrast', className)
+  const classesSpiner = clsx(
+    'spiner',
+    full && '_full',
+    fullScreen && '_full-screen'
+  )
+
+  const classesIcon = clsx('spiner__icon ', contrast && '_contrast', className)
 
   return (
-    <div data-testid='spiner' className={clsx('spiner', full && '_full')}>
-      <i style={style} className={classes} />
+    <div data-testid='spiner' className={classesSpiner}>
+      <i style={style} className={classesIcon} />
     </div>
   )
 }

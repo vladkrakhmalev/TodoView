@@ -6,6 +6,19 @@
   height: 100%;
 }
 
+.spiner._full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .spiner__icon {
   display: block;
   border: solid var(--text-primary);
@@ -28,4 +41,4 @@
   100% {
     transform: rotate(360deg);
   }
-} 
+}
