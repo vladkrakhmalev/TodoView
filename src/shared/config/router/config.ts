@@ -1,4 +1,5 @@
 export const routerConfig = {
+  home: '/TodoView',
   main: '/main',
   today: '/today',
   calendar: '/calendar',
@@ -18,16 +19,16 @@ export interface ISidebarMenuItem {
 export const sidebarMenu: ISidebarMenuItem[] = [
   {
     name: 'Главная',
-    icon: 'home'
+    icon: 'home',
   },
   {
     path: routerConfig.today,
     name: 'Сегодня',
-    icon: 'calendar-day'
+    icon: 'calendar-day',
   },
   {
     path: routerConfig.calendar,
     name: 'Календарь',
-    icon: 'calendar'
+    icon: 'calendar',
   },
 ]

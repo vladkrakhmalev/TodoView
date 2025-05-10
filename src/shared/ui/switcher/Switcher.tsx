@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
+import { FC, useState } from 'react'
 import './Switcher.css'
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 interface IOption {
   value: string
@@ -13,7 +13,11 @@ interface IProps {
   onChange: (option: IOption) => void
 }
 
-export const Switcher: FC<IProps> = ({ defaultValue = null, options, onChange }) => {
+export const Switcher: FC<IProps> = ({
+  defaultValue = null,
+  options,
+  onChange,
+}) => {
   const [activeValue, setActiveValue] = useState<string | null>(defaultValue)
 
   const handlerChange = (option: IOption) => {
@@ -22,18 +26,20 @@ export const Switcher: FC<IProps> = ({ defaultValue = null, options, onChange })
   }
 
   return (
-    <div data-testid="switcher" className='switcher'>
-      {options.map((option, idx) =>
-        <div
+    <div data-testid='switcher' className='switcher'>
+      {options.map((option, idx) => (
+        <button
           key={idx}
-          className={clsx('switcher__item', activeValue === option.value && '_active')}
+          type='button'
+          className={clsx(
+            'switcher__item',
+            activeValue === option.value && '_active'
+          )}
           onClick={() => handlerChange(option)}
         >
-          <span className='switcher__item-title'>
-            {option.title}
-          </span>
-        </div>
-      )}
+          <span className='switcher__item-title'>{option.title}</span>
+        </button>
+      ))}
     </div>
-  );
-};
+  )
+}

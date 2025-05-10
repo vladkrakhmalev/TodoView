@@ -1,4 +1,4 @@
-import { UpdateTaskArgs } from "@doist/todoist-api-typescript"
+import { UpdateTaskArgs } from '@doist/todoist-api-typescript'
 
 export interface ITaskFilter {
   filter?: string

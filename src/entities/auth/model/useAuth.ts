@@ -15,4 +15,4 @@ export const useAuth = () => {
   }
 
   return { isAuth, logout }
-} 
+}

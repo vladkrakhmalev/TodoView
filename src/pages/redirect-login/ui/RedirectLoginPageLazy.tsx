@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
 
-export const RedirectLoginPageLazy = lazy(() => import('./RedirectLoginPage')); 
+export const RedirectLoginPageLazy = lazy(() => import('./RedirectLoginPage'))

@@ -1,7 +1,14 @@
-import { FC, MouseEvent, ReactNode, useMemo, useState } from 'react';
-import { Modal } from '@shared/ui/modal';
-import { TaskForm, ITaskForm, useUpdateTask, convertFormToTask, convertTaskToForm, useDeleteTask } from '@entities/task';
-import { Task } from '@doist/todoist-api-typescript';
+import { FC, MouseEvent, ReactNode, useState } from 'react'
+import { Modal } from '@shared/ui/modal'
+import {
+  TaskForm,
+  ITaskForm,
+  useUpdateTask,
+  convertFormToTask,
+  convertTaskToForm,
+  useDeleteTask,
+} from '@entities/task'
+import { Task } from '@doist/todoist-api-typescript'
 
 interface IProps {
   task: Task
@@ -10,12 +17,14 @@ interface IProps {
 }
 
 export const UpdateTask: FC<IProps> = ({ task, children, isResize }) => {
-  const { mutateAsync: updateTask, isPending: isUpdatePending } = useUpdateTask()
-  const { mutateAsync: deleteTask, isPending: isDeletePending } = useDeleteTask()
+  const { mutateAsync: updateTask, isPending: isUpdatePending } =
+    useUpdateTask()
+  const { mutateAsync: deleteTask, isPending: isDeletePending } =
+    useDeleteTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const defaultForm = useMemo(() => convertTaskToForm(task), [task])
+  const defaultForm = convertTaskToForm(task)
 
-  const handlerOpen = (event: MouseEvent<HTMLDivElement>) => {
+  const handlerOpen = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation()
     if (!isResize) setIsOpen(true)
   }
@@ -31,20 +40,20 @@ export const UpdateTask: FC<IProps> = ({ task, children, isResize }) => {
     setIsOpen(false)
   }
 
-  return (<>
-    <div onClick={handlerOpen}>
-      {children}
-    </div>
+  return (
+    <>
+      <button onClick={handlerOpen}>{children}</button>
 
-    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-      <TaskForm
-        title='Редактировать задачу'
-        defaultForm={defaultForm}
-        isLoading={isUpdatePending}
-        isDeleting={isDeletePending}
-        onSubmit={handlerSubmit}
-        onDelete={handlerDelete}
-      />
-    </Modal>
-  </>)
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <TaskForm
+          title='Редактировать задачу'
+          defaultForm={defaultForm}
+          isLoading={isUpdatePending}
+          isDeleting={isDeletePending}
+          onSubmit={handlerSubmit}
+          onDelete={handlerDelete}
+        />
+      </Modal>
+    </>
+  )
 }
