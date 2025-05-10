@@ -37,7 +37,12 @@ export const Button: FC<IProps> = props => {
   )
 
   return (
-    <button disabled={disabled || isLoading} className={classes} {...rest}>
+    <button
+      data-testid='button'
+      disabled={disabled || isLoading}
+      className={classes}
+      {...rest}
+    >
       {iconBefore && (
         <i
           data-testid='icon-before'
