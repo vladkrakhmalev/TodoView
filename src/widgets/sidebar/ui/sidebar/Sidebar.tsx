@@ -10,6 +10,7 @@ import {
 } from '@widgets/sidebar/config/consts'
 import { SidebarMenu } from '../sidebar-menu/SidebarMenu'
 import { ProjectSmallList } from '@entities/project'
+import { ChangeLang } from '@features/switch-lang'
 
 const isOpenSidebar = localStorage.getItem('isOpenSidebar') === 'true'
 
@@ -44,6 +45,7 @@ export const Sidebar: FC = () => {
       </div>
 
       <div className='sidebar__block'>
+        <ChangeLang />
         <Button
           iconBefore={theme === 'light' ? 'moon' : 'brightness'}
           onClick={toggleTheme}

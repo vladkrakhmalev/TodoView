@@ -3,6 +3,7 @@ import './ProjectForm.css'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { IProjectForm } from '../../model/project.types'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   title: string
@@ -18,6 +19,7 @@ const initialForm: IProjectForm = {
 }
 
 export const ProjectForm: FC<IProps> = props => {
+  const { t } = useTranslation()
   const { title, defaultForm, isLoading, isDeleting, onSubmit, onDelete } =
     props
 
@@ -57,19 +59,19 @@ export const ProjectForm: FC<IProps> = props => {
         inputRef={firstInputRef}
         value={form.name}
         required
-        placeholder='Введите название проекта'
-        label='Название'
+        placeholder={t('Введите название проекта')}
+        label={t('Название')}
         onUpdate={value => handlerChange(value, 'name')}
       />
 
-      <div className='task-form__buttons'>
+      <div className='project-form__buttons'>
         <Button
           isLoading={isLoading}
           iconBefore='disk'
           variant='primary'
           fullWidth
         >
-          Сохранить
+          {t('Сохранить')}
         </Button>
 
         {onDelete && (

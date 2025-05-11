@@ -4,8 +4,10 @@ import { useCalendarStore } from '../../model/calendarStore'
 import { Button } from '@shared/ui/button'
 import { Switcher } from '@shared/ui/switcher'
 import { FIRST_COLUMN_WIDTH } from '@shared/config/calendar'
+import { useTranslation } from 'react-i18next'
 
 export const CalendarHeader: FC = () => {
+  const { t } = useTranslation()
   const { startDate, prevWeek, nextWeek, resetWeek } = useCalendarStore()
   const month = startDate.format('MMMM YYYY')
 
@@ -25,8 +27,9 @@ export const CalendarHeader: FC = () => {
       <Switcher
         defaultValue='week'
         options={[
-          { value: 'week', title: 'Неделя' },
-          { value: 'month', title: 'Месяц' },
+          { value: 'day', title: t('День') },
+          { value: 'week', title: t('Неделя') },
+          { value: 'month', title: t('Месяц') },
         ]}
         onChange={() => {}}
       />

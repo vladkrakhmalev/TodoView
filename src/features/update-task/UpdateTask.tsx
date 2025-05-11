@@ -9,6 +9,7 @@ import {
   useDeleteTask,
 } from '@entities/task'
 import { Task } from '@doist/todoist-api-typescript'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   task: Task
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 export const UpdateTask: FC<IProps> = ({ task, children, isResize }) => {
+  const { t } = useTranslation()
   const { mutateAsync: updateTask, isPending: isUpdatePending } =
     useUpdateTask()
   const { mutateAsync: deleteTask, isPending: isDeletePending } =
@@ -46,7 +48,7 @@ export const UpdateTask: FC<IProps> = ({ task, children, isResize }) => {
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <TaskForm
-          title='Редактировать задачу'
+          title={t('Редактировать задачу')}
           defaultForm={defaultForm}
           isLoading={isUpdatePending}
           isDeleting={isDeletePending}

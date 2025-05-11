@@ -3,12 +3,14 @@ import { Button } from '@shared/ui/button'
 import { Modal } from '@shared/ui/modal'
 import { useUpdateProject, ProjectForm } from '@entities/project'
 import { UpdateProjectArgs, Project } from '@doist/todoist-api-typescript'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   project: Project
 }
 
 export const UpdateProjectButton: FC<IProps> = ({ project }) => {
+  const { t } = useTranslation()
   const { mutateAsync: updateProject, isPending } = useUpdateProject()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const defaultForm = { name: project.name }
@@ -37,12 +39,12 @@ export const UpdateProjectButton: FC<IProps> = ({ project }) => {
         size='small'
         onClick={handlerOpen}
       >
-        Редактировать
+        {t('Редактировать')}
       </Button>
 
       <Modal isOpen={isOpen} onClose={handlerClose}>
         <ProjectForm
-          title='Редактировать проект'
+          title={t('Редактировать проект')}
           isLoading={isPending}
           defaultForm={defaultForm}
           onSubmit={handlerSubmit}

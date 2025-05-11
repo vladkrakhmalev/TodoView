@@ -4,6 +4,7 @@ import { useProject } from '@entities/project'
 import { Link } from 'react-router'
 import { ProjectActions } from '../project-actions/ProjectActions'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   projectId: string
@@ -11,6 +12,7 @@ interface IProps {
 
 export const ProjectHeader: FC<IProps> = ({ projectId }) => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const { data: project = null, isLoading, isError } = useProject(projectId)
 
   useEffect(() => {
@@ -22,7 +24,11 @@ export const ProjectHeader: FC<IProps> = ({ projectId }) => {
       <div className='project-header__top'>
         <h1 className='project-header__title'>
           {isLoading && <div className='project-header__skeleton' />}
-          {project?.name && <span>Проект "{project.name}"</span>}
+          {project?.name && (
+            <span>
+              {t('Проект')} "{project.name}"
+            </span>
+          )}
         </h1>
 
         {project && !project.isInboxProject && (
@@ -40,7 +46,7 @@ export const ProjectHeader: FC<IProps> = ({ projectId }) => {
         {project?.name && (
           <>
             <Link to='/projects' className='project-header__breadcrumbs-link'>
-              Проекты
+              {t('Проекты')}
             </Link>
             <span className='project-header__breadcrumbs-name'>
               {project.name}

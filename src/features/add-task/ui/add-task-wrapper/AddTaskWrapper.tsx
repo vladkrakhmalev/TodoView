@@ -9,6 +9,7 @@ import {
 } from '@entities/task'
 import dayjs from '@shared/config/dayjs'
 import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   date: string
@@ -16,6 +17,7 @@ interface IProps {
 }
 
 export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
+  const { t } = useTranslation()
   const { mutateAsync: addTask, isPending } = useAddTask()
 
   const [defaultForm, setDefaultForm] = useState<Partial<ITaskForm>>({ date })
@@ -54,7 +56,7 @@ export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
 
       <Modal isOpen={isOpen} onClose={handlerClose}>
         <TaskForm
-          title='Добавить задачу'
+          title={t('Добавить задачу')}
           defaultForm={defaultForm}
           isLoading={isPending}
           onSubmit={handlerSubmit}

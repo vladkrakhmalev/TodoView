@@ -4,9 +4,11 @@ import './MainLayout.css'
 import { useAuth } from '@entities/auth'
 import { Sidebar } from '@widgets/sidebar'
 import { routerConfig } from '@shared/config/router'
+import { useTranslation } from 'react-i18next'
 
 export const MainLayout: FC = () => {
   const { isAuth } = useAuth()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
 
@@ -32,7 +34,7 @@ export const MainLayout: FC = () => {
           height: '100vh',
         }}
       >
-        Загрузка...
+        {t('Загрузка...')}
       </div>
     )
   }

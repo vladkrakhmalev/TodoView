@@ -1,1 +1,1 @@
-export { routerConfig, sidebarMenu } from './config'
+export { routerConfig } from './config'

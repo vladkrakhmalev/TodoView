@@ -1,0 +1,31 @@
+{
+  "Главная": "Home",
+  "Сегодня": "Today",
+  "Календарь": "Calendar",
+  "Название": "Name",
+  "Дата": "Date",
+  "Время начала": "Start time",
+  "Время окончания": "End time",
+  "Скоро": "Soon",
+  "День": "Day",
+  "Неделя": "Week",
+  "Месяц": "Month",
+  "Сохранить": "Save",
+  "Редактировать": "Edit",
+  "Удалить": "Delete",
+  "Загрузка...": "Loading...",
+
+  "Задачи на сегодня": "Tasks for today",
+  "Добавить задачу": "Add task",
+  "Редактировать задачу": "Edit task",
+  "Введите название задачи": "Enter the task name",
+
+  "Проекты": "Projects",
+  "Проект": "Project",
+  "Добавить проект": "Add project",
+  "Редактировать проект": "Edit project",
+  "Удалить проект?": "Delete project?",
+  "Вы уверены что хотите удалить проект и все его задачи?": "Are you sure you want to delete the project and all its tasks?",
+  "Нет проектов": "No projects",
+  "Введите название проекта": "Enter the project name"
+}

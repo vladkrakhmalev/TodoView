@@ -3,6 +3,7 @@ import './TaskForm.css'
 import { Button } from '@shared/ui/button'
 import { Input } from '@shared/ui/input'
 import { ITaskForm } from '../../model/task'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   title: string
@@ -21,6 +22,7 @@ const initialForm: ITaskForm = {
 }
 
 export const TaskForm: FC<IProps> = props => {
+  const { t } = useTranslation()
   const { title, defaultForm, isLoading, isDeleting, onSubmit, onDelete } =
     props
 
@@ -60,15 +62,15 @@ export const TaskForm: FC<IProps> = props => {
         inputRef={firstInputRef}
         value={form.content}
         required
-        placeholder='Введите название задачи'
-        label='Название'
+        placeholder={t('Введите название задачи')}
+        label={t('Название')}
         onUpdate={value => handlerChange(value, 'content')}
       />
 
       <Input
         value={form.date}
         type='date'
-        label='Дата'
+        label={t('Дата')}
         onUpdate={value => handlerChange(value, 'date')}
       />
 
@@ -76,7 +78,7 @@ export const TaskForm: FC<IProps> = props => {
         value={form.timeStart}
         type='time'
         className='_short'
-        label='Время начала'
+        label={t('Время начала')}
         onUpdate={value => handlerChange(value, 'timeStart')}
       />
 
@@ -84,7 +86,7 @@ export const TaskForm: FC<IProps> = props => {
         value={form.timeEnd}
         type='time'
         className='_short'
-        label='Время окончания'
+        label={t('Время окончания')}
         onUpdate={value => handlerChange(value, 'timeEnd')}
       />
 
@@ -95,7 +97,7 @@ export const TaskForm: FC<IProps> = props => {
           variant='primary'
           fullWidth
         >
-          Сохранить
+          {t('Сохранить')}
         </Button>
 
         {onDelete && (

@@ -16,6 +16,7 @@ export const ProjectActions: FC<IProps> = ({ project }) => {
       trigger={
         <Button variant='secondary' iconBefore='menu-dots' size='small' />
       }
+      position='right'
     >
       <div className='project-actions'>
         <UpdateProjectButton project={project} />

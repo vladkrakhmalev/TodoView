@@ -7,8 +7,10 @@ import clsx from 'clsx'
 import { Link, useLocation, useNavigate } from 'react-router'
 import { routerConfig } from '@shared/config/router'
 import { AddProjectButton } from '@features/add-project'
+import { useTranslation } from 'react-i18next'
 
 export const ProjectSmallList: FC = () => {
+  const { t } = useTranslation()
   const location = useLocation()
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
@@ -35,7 +37,7 @@ export const ProjectSmallList: FC = () => {
         onClick={handleNavigate}
       >
         <i className='fi fi-rr-folder' />
-        <p className='project-small-list__title'>Проекты</p>
+        <p className='project-small-list__title'>{t('Проекты')}</p>
 
         <AddProjectButton />
 
@@ -51,7 +53,7 @@ export const ProjectSmallList: FC = () => {
 
         {isEmpty && (
           <div className='project-small-list__empty'>
-            <p>Нет проектов</p>
+            <p>{t('Нет проектов')}</p>
           </div>
         )}
 
