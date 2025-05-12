@@ -6,12 +6,13 @@ import { createPortal } from 'react-dom'
 interface IProps {
   isOpen: boolean
   children: ReactNode
+  title?: string
   position?: 'center' | 'left' | 'right'
   onClose?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Modal: FC<IProps> = props => {
-  const { children, isOpen, position = 'center', onClose } = props
+  const { children, isOpen, title, position = 'center', onClose } = props
 
   if (!isOpen) return null
 
@@ -26,12 +27,18 @@ export const Modal: FC<IProps> = props => {
         className='modal__container'
         onClick={event => event.stopPropagation()}
       >
-        <button onClick={event => onClose?.(event)}>
-          <i
-            data-testid='modal-close'
-            className='modal__close fi fi-rr-cross-small'
-          />
+        <button
+          data-testid='modal-close'
+          className='modal__close'
+          onClick={event => onClose?.(event)}
+        >
+          <i className='fi fi-rr-cross-small' />
         </button>
+        {title && (
+          <h3 data-testid='modal-title' className='modal__title'>
+            {title}
+          </h3>
+        )}
         {children}
       </button>
     </button>,

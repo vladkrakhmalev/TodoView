@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react'
 import { Modal } from './Modal'
 
 describe('Modal', () => {
+  it('should render modal by default', () => {
+    render(<Modal isOpen>Content</Modal>)
+
+    expect(screen.getByTestId('modal')).toHaveClass('_open')
+    expect(screen.getByTestId('modal')).toHaveClass('_center')
+    expect(screen.queryByTestId('modal-title')).not.toBeInTheDocument()
+  })
+
   it('should not render when isOpen is false', () => {
     render(<Modal isOpen={false}>Content</Modal>)
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument()
@@ -22,9 +30,14 @@ describe('Modal', () => {
     expect(screen.getByTestId('test-content')).toBeInTheDocument()
   })
 
-  it('should render with center position by default', () => {
-    render(<Modal isOpen>Content</Modal>)
-    expect(screen.getByTestId('modal')).toHaveClass('modal _center')
+  it('should render modal with title', () => {
+    render(
+      <Modal isOpen title='Test Title'>
+        Content
+      </Modal>
+    )
+
+    expect(screen.getByTestId('modal-title')).toHaveTextContent('Test Title')
   })
 
   it('should render with left position', () => {
