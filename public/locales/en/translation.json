@@ -1,4 +1,9 @@
 {
+  "Добро пожаловать в TodoView": "Welcome to TodoView",
+  "Для использования приложения необходимо войти через ваш аккаунт Todoist": "To use the application, you need to log in through your Todoist account",
+  "Войти через Todoist": "Login with Todoist",
+  "Выйти": "Logout",
+
   "Главная": "Home",
   "Сегодня": "Today",
   "Календарь": "Calendar",

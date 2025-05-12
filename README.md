@@ -105,6 +105,7 @@
 - [Zustand](https://zustand.docs.pmnd.rs/) для управления состоянием в React
 - [Tanstack Query](https://tanstack.com/query) для работы с сервером
 - [Todoist API TS](https://doist.github.io/todoist-api-typescript/) для удобной и типизированой работы с API Todoist
+- [I18N](https://www.i18next.com/) для локализации проекта
 - [DNDKit](https://dndkit.com/) для реализации drag-and-drop функциональности
 - [Dayjs](https://day.js.org/) для работы с датами и временем (лёгкая альтернатива Moment.js)
 - [React Router](https://reactrouter.com/) для маршрутизации на стороне клиента
