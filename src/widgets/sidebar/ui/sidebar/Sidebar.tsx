@@ -1,8 +1,6 @@
 import { FC, useState } from 'react'
 import './Sidebar.css'
-import { useTheme } from '@shared/lib/theme'
 import { Button } from '@shared/ui/button'
-import { useAuth } from '@entities/auth'
 import logoSvg from '@shared/assets/icons/logo.svg'
 import {
   SIDEBAR_WIDTH,
@@ -10,14 +8,12 @@ import {
 } from '@widgets/sidebar/config/consts'
 import { SidebarMenu } from '../sidebar-menu/SidebarMenu'
 import { ProjectSmallList } from '@entities/project'
-import { ChangeLang } from '@features/switch-lang'
+import { SidebarSettings } from '../sidebar-settings/SidebarSettings'
 
 const isOpenSidebar = localStorage.getItem('isOpenSidebar') === 'true'
 
 export const Sidebar: FC = () => {
   const [isOpen, setIsOpen] = useState(isOpenSidebar)
-  const { theme, toggleTheme } = useTheme()
-  const { logout } = useAuth()
 
   const toggleSidebar = () => {
     const newIsOpen = !isOpen
@@ -44,15 +40,7 @@ export const Sidebar: FC = () => {
         <ProjectSmallList />
       </div>
 
-      <div className='sidebar__block'>
-        <ChangeLang />
-        <Button
-          iconBefore={theme === 'light' ? 'moon' : 'brightness'}
-          onClick={toggleTheme}
-        />
-
-        <Button iconBefore='sign-out-alt' onClick={logout} />
-      </div>
+      <SidebarSettings />
     </div>
   )
 }

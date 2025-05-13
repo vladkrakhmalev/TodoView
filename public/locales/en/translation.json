@@ -3,10 +3,12 @@
   "Для использования приложения необходимо войти через ваш аккаунт Todoist": "To use the application, you need to log in through your Todoist account",
   "Войти через Todoist": "Login with Todoist",
   "Выйти": "Logout",
+  "Сменить тему": "Change theme",
 
   "Главная": "Home",
   "Сегодня": "Today",
   "Календарь": "Calendar",
+  "Настройки": "Settings",
   "Название": "Name",
   "Дата": "Date",
   "Время начала": "Start time",
