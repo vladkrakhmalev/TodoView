@@ -1,4 +1,4 @@
-@import "@flaticon/flaticon-uicons/css/all/all";
-@import './global.css';
-@import './theme/light.css';
-@import './theme/dark.css';
+@import url('@flaticon/flaticon-uicons/css/all/all');
+@import url('./global.css');
+@import url('./theme/light.css');
+@import url('./theme/dark.css');

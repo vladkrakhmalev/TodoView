@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:ts": "npx tsc",
     "lint:fix": "eslint . --fix",
+    "lint:css": "npx stylelint '**/*.css' --ignore-path .gitignore",
+    "lint:css:fix": "npx stylelint --fix '**/*.css' --ignore-path .gitignore",
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
@@ -56,6 +57,8 @@
     "jsdom": "^26.0.0",
     "prettier": "^3.5.3",
     "serve": "^14.2.4",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",

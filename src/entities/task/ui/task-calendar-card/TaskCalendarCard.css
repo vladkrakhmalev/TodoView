@@ -46,7 +46,7 @@
   position: absolute;
   right: 0;
   top: 0;
-  padding: 4px 4px;
+  padding: 4px;
   opacity: 0;
   transform: translate(10px);
   transition: 0.2s;
