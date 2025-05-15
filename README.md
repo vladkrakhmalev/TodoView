@@ -115,7 +115,13 @@
 - [React Router](https://reactrouter.com/) для маршрутизации на стороне клиента
 - [Flaticon Uicons](https://www.npmjs.com/package/@flaticon/flaticon-uicons) для использования иконок из библиотеки Flaticon UIcons
 - [Vite](https://vite.dev/) для сборки приложения
+
+## Зависимости для разработки
+
+Эти пакеты не влияют на работу самого приложения, но позволяют писать код быстрее и качественнее
+
 - [Vitest](https://vitest.dev/) для тестирования TypeScript кода
 - [Testing Library](https://testing-library.com/) для тестирования компонентов React
 - [ESLint](https://eslint.org/) для улучшения качества TS кода
 - [Stylelint](https://stylelint.io/) для улучшения качества CSS кода
+- [Husky](https://typicode.github.io/husky/) для проверки тестов, линтеров перед комитом
