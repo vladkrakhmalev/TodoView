@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
-import { TODOIST_CLIENT_ID, TODOIST_CLIENT_SECRET, TODOIST_REDIRECT_URI } from '@shared/config/todoist'
+import {
+  TODOIST_CLIENT_ID,
+  TODOIST_CLIENT_SECRET,
+  TODOIST_REDIRECT_URI,
+} from '@shared/config/todoist'
+import { useNavigate } from 'react-router'
 
 export const useProcessOAuth = () => {
-  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
+  const navigate = useNavigate()
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>(
+    'loading'
+  )
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -31,17 +39,16 @@ export const useProcessOAuth = () => {
             client_id: TODOIST_CLIENT_ID,
             client_secret: TODOIST_CLIENT_SECRET,
             code,
-            redirect_uri: TODOIST_REDIRECT_URI
-          })
+            redirect_uri: TODOIST_REDIRECT_URI,
+          }),
         })
         const data = await response.json()
         localStorage.setItem('accessToken', data?.access_token || '')
-        
+
         setStatus('success')
         setTimeout(() => {
-          window.location.href = '/calendar'
-        }, 1500)
-        
+          navigate('/calendar')
+        }, 500)
       } catch (err) {
         setStatus('error')
         setError('Произошла ошибка при обработке авторизации')
@@ -50,7 +57,7 @@ export const useProcessOAuth = () => {
     }
 
     processOAuthCallback()
-  }, [])
+  }, [navigate])
 
   return { status, error }
-} 
+}

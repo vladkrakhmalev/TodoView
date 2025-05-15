@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react'
 import './DragTask.css'
-import { useDroppable } from '@dnd-kit/core';
-import { useDragTaskContext } from '../model/dragTaskContext';
-import clsx from 'clsx';
+import { useDroppable } from '@dnd-kit/core'
+import { useDragTaskContext } from '../model/dragTaskContext'
+import clsx from 'clsx'
 
 interface IProps {
   id: string
@@ -15,9 +15,12 @@ export const DragTaskDroppable: FC<IProps> = ({ id, children }) => {
   const isActive = activeDroppableId === id
 
   return (
-    <div className={clsx('drag-task__droppable', isActive && '_active')} ref={setNodeRef}>
+    <div
+      className={clsx('drag-task__droppable', isActive && '_active')}
+      ref={setNodeRef}
+    >
       {children}
-      {isActive && <div className='drag-task__shadow'/>}
+      {isActive && <div className='drag-task__shadow' />}
     </div>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
-import { FC, ReactNode } from 'react';
-import { TaskCalendarCard } from '@entities/task';
-import { useDraggable } from '@dnd-kit/core';
-import { Task } from '@doist/todoist-api-typescript';
+import { FC, ReactNode } from 'react'
+import { TaskCalendarCard } from '@entities/task'
+import { useDraggable } from '@dnd-kit/core'
+import { Task } from '@doist/todoist-api-typescript'
 
 interface IProps {
   task: Task
@@ -9,21 +9,23 @@ interface IProps {
   resizeTask: ReactNode
 }
 
-export const DragTaskDraggable: FC<IProps> = ({ task, completeTask, resizeTask }) => {
+export const DragTaskDraggable: FC<IProps> = ({
+  task,
+  completeTask,
+  resizeTask,
+}) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task.id,
+    data: task,
+  })
 
-  const {attributes, listeners, setNodeRef, transform} = useDraggable({ id: task.id, data: task })
-  
   const style = {
     opacity: transform ? 0.5 : 1,
     transition: '0.2s',
   }
 
   const draggableTask = (
-    <i
-      className='fi fi-sr-grip-dots-vertical'
-      {...listeners}
-      {...attributes}
-    />
+    <i className='fi fi-rr-grip-dots-vertical' {...listeners} {...attributes} />
   )
 
   return (
@@ -35,5 +37,5 @@ export const DragTaskDraggable: FC<IProps> = ({ task, completeTask, resizeTask }
         resizeTask={resizeTask}
       />
     </div>
-  );
-};
+  )
+}

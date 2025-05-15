@@ -1,9 +1,14 @@
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState } from 'react'
 import './DragTask.css'
-import { pointerWithin, DndContext, DragEndEvent, DragMoveEvent } from '@dnd-kit/core';
-import { convertDndToTask } from '@entities/task';
-import { DragTaskContext } from '../model/dragTaskContext';
-import { useUpdateTask } from '@entities/task';
+import {
+  pointerWithin,
+  DndContext,
+  DragEndEvent,
+  DragMoveEvent,
+} from '@dnd-kit/core'
+import { convertDndToTask } from '@entities/task'
+import { DragTaskContext } from '../model/dragTaskContext'
+import { useUpdateTask } from '@entities/task'
 
 interface IProps {
   children: ReactNode
@@ -11,13 +16,15 @@ interface IProps {
 
 export const DragTaskContextProvider: FC<IProps> = ({ children }) => {
   const { mutate: updateTask } = useUpdateTask()
-  const [activeDroppableId, setActiveDroppableId] = useState<string | null>(null)
+  const [activeDroppableId, setActiveDroppableId] = useState<string | null>(
+    null
+  )
 
   const handleDragMove = (event: DragMoveEvent) => {
     if (event.over?.id) {
-      setActiveDroppableId(String(event.over.id));
+      setActiveDroppableId(String(event.over.id))
     } else {
-      setActiveDroppableId(null);
+      setActiveDroppableId(null)
     }
   }
 
@@ -26,8 +33,8 @@ export const DragTaskContextProvider: FC<IProps> = ({ children }) => {
       const newTask = convertDndToTask(event.active.id, activeDroppableId)
       updateTask(newTask)
     }
-    
-    setActiveDroppableId(null);
+
+    setActiveDroppableId(null)
   }
 
   return (
@@ -40,5 +47,5 @@ export const DragTaskContextProvider: FC<IProps> = ({ children }) => {
         {children}
       </DndContext>
     </DragTaskContext.Provider>
-  );
-};
+  )
+}

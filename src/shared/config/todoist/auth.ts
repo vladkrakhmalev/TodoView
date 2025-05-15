@@ -1,4 +1,8 @@
-import { TODOIST_CLIENT_ID, TODOIST_SCOPES, TODOIST_STATE_STRING } from "./config";
+import {
+  TODOIST_CLIENT_ID,
+  TODOIST_SCOPES,
+  TODOIST_STATE_STRING,
+} from './config'
 
 export const getAuthorizationUrl = () => {
   const params = new URLSearchParams({

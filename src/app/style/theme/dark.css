@@ -1,23 +1,19 @@
-[data-theme=dark] {
+[data-theme="dark"] {
   --color-primary: #457aff;
   --color-primary-hover: #2658d5;
   --color-white: #fff;
   --color-black: #333;
-
   --bg-primary: #16171a;
   --bg-secondary: #242833;
   --bg-secondary-hover: #29334e;
   --bg-light: #202125;
   --bg-danger: #fe6161;
   --bg-danger-hover: #e14545;
-
   --text-primary: #fff;
   --text-secondary: #8e94a2;
   --text-contrast: #333;
-
-  --border-primary: #ffffff;
+  --border-primary: #fff;
   --border-light: #444;
-
   --shadow-primary: #fff2;
   --shadow-secondary: #16171abb;
 }

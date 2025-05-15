@@ -1,4 +1,5 @@
 export const routerConfig = {
+  home: '/TodoView',
   main: '/main',
   today: '/today',
   calendar: '/calendar',
@@ -8,26 +9,3 @@ export const routerConfig = {
   redirectLogin: '/redirect-login',
   notFound: '/404',
 }
-
-export interface ISidebarMenuItem {
-  path?: string
-  name: string
-  icon: string
-}
-
-export const sidebarMenu: ISidebarMenuItem[] = [
-  {
-    name: 'Главная',
-    icon: 'home'
-  },
-  {
-    path: routerConfig.today,
-    name: 'Сегодня',
-    icon: 'calendar-day'
-  },
-  {
-    path: routerConfig.calendar,
-    name: 'Календарь',
-    icon: 'calendar'
-  },
-]

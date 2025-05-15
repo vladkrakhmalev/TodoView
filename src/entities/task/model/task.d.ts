@@ -1,4 +1,4 @@
-import { Task } from '@doist/todoist-api-typescript';
+import { Task } from '@doist/todoist-api-typescript'
 
 export interface ITaskForm {
   content: string
@@ -15,5 +15,13 @@ export interface IDayWithTasks {
 export interface IWeekdayWithTasks {
   noDate: Task[]
   // 7 дней недели
-  days: [IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks, IDayWithTasks]
+  days: [
+    IDayWithTasks,
+    IDayWithTasks,
+    IDayWithTasks,
+    IDayWithTasks,
+    IDayWithTasks,
+    IDayWithTasks,
+    IDayWithTasks,
+  ]
 }

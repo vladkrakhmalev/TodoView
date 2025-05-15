@@ -1,7 +1,7 @@
-import { FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react'
 import './Button.css'
-import clsx from 'clsx';
-import { Spiner } from '../spiner';
+import clsx from 'clsx'
+import { Spiner } from '../spiner'
 
 interface IProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
@@ -14,7 +14,7 @@ interface IProps extends HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean
 }
 
-export const Button: FC<IProps> = (props) => {
+export const Button: FC<IProps> = props => {
   const {
     children,
     variant = 'secondary',
@@ -33,15 +33,30 @@ export const Button: FC<IProps> = (props) => {
     '_' + variant,
     fullWidth && '_full',
     size && '_' + size,
-    className,
+    className
   )
 
   return (
-    <button disabled={disabled || isLoading} className={classes} {...rest}>
-      {iconBefore && <i data-testid="icon-before" className={'button__icon fi fi-rr-' + iconBefore}/>}
+    <button
+      data-testid='button'
+      disabled={disabled || isLoading}
+      className={classes}
+      {...rest}
+    >
+      {iconBefore && (
+        <i
+          data-testid='icon-before'
+          className={'button__icon fi fi-rr-' + iconBefore}
+        />
+      )}
       {children}
-      {iconAfter && <i data-testid="icon-after" className={'button__icon fi fi-rr-' + iconAfter}/>}
-      {isLoading && <Spiner size={15} contrast={variant === 'primary'}/>}
+      {iconAfter && (
+        <i
+          data-testid='icon-after'
+          className={'button__icon fi fi-rr-' + iconAfter}
+        />
+      )}
+      {isLoading && <Spiner size={15} contrast={variant === 'primary'} />}
     </button>
-  );
-};
+  )
+}

@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export const ResizeWrapper: FC<IProps> = ({ task, onResize }) => {
-  const { handleMouseDown } = useResizeTask({task, onResize})
-  
-  return <div className='resize-wrapper' onMouseDown={handleMouseDown}/>
-} 
+  const { handleMouseDown } = useResizeTask({ task, onResize })
+
+  return <button className='resize-wrapper' onMouseDown={handleMouseDown} />
+}

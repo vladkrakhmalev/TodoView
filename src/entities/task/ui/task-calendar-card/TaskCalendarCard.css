@@ -10,7 +10,7 @@
   border-radius: var(--border-radius);
   padding: 3px 10px 3px 5px;
   overflow: hidden;
-  transition: .2s;
+  transition: 0.2s;
   box-shadow: 0 0 5px var(--shadow-primary);
 }
 
@@ -46,18 +46,18 @@
   position: absolute;
   right: 0;
   top: 0;
-  padding: 4px 4px;
+  padding: 4px;
   opacity: 0;
   transform: translate(10px);
-  transition: .2s;
+  transition: 0.2s;
   border-radius: 5px;
-}
-
-.task-calendar-card:hover .task-calendar-card__draggable {
-  opacity: .3;
-  transform: translate(0);
 }
 
 .task-calendar-card__draggable:hover {
   opacity: 1 !important;
+}
+
+.task-calendar-card:hover .task-calendar-card__draggable {
+  opacity: 0.3;
+  transform: translate(0);
 }

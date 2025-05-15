@@ -8,19 +8,19 @@
   border: none;
   border-radius: 10px;
   background: var(--bg-secondary);
-  transition: .2s;
+  transition: 0.2s;
   font-size: 16px;
   text-align: center;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .button:not(:disabled):hover {
   cursor: pointer;
   background-color: var(--bg-secondary-hover);
-}
-
-.button:disabled {
-  opacity: .5;
-  cursor: not-allowed;
 }
 
 .button._primary {
