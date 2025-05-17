@@ -74,4 +74,16 @@ describe('Switcher', () => {
     render(<Switcher options={[]} onChange={vi.fn()} />)
     expect(screen.getByTestId('switcher')).toBeEmptyDOMElement()
   })
+
+  it('should be disabled when disabled prop is true', () => {
+    render(<Switcher options={options} onChange={vi.fn()} disabled />)
+    const option1 = screen.getByText('Option 1')
+
+    act(() => {
+      option1.click()
+    })
+
+    expect(option1.parentElement).not.toHaveClass('_active')
+    expect(screen.getByTestId('switcher')).toHaveClass('_disabled')
+  })
 })

@@ -10,23 +10,30 @@ interface IOption {
 interface IProps {
   defaultValue?: string
   options: IOption[]
+  disabled?: boolean
   onChange: (option: IOption) => void
 }
 
 export const Switcher: FC<IProps> = ({
   defaultValue = null,
   options,
+  disabled = false,
   onChange,
 }) => {
   const [activeValue, setActiveValue] = useState<string | null>(defaultValue)
 
   const handlerChange = (option: IOption) => {
+    if (disabled) return
+
     setActiveValue(option.value)
     onChange(option)
   }
 
   return (
-    <div data-testid='switcher' className='switcher'>
+    <div
+      data-testid='switcher'
+      className={clsx('switcher', disabled && '_disabled')}
+    >
       {options.map((option, idx) => (
         <button
           key={idx}

@@ -12,15 +12,21 @@
   width: 100%;
   border: 1px solid transparent;
   background-color: var(--bg-light);
+  color: var(--text-primary);
   padding: 10px;
   border-radius: var(--border-radius);
   outline: none;
   font-size: 16px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.input__component:focus,
-.input__component:hover {
+.input__component:disabled {
+  color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
+.input__component:not(:disabled):focus,
+.input__component:not(:disabled):hover {
   border: 1px solid var(--border-light);
 }
 

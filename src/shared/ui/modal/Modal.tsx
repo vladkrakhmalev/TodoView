@@ -42,6 +42,6 @@ export const Modal: FC<IProps> = props => {
         {children}
       </button>
     </button>,
-    document.getElementById('app') as HTMLElement
+    document.getElementById('app') || document.body
   )
 }
