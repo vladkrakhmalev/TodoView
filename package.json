@@ -74,6 +74,7 @@
     "jsdom": "^26.0.0",
     "playwright": "^1.52.0",
     "prettier": "^3.5.3",
+    "rollup-plugin-visualizer": "^5.14.0",
     "serve": "^14.2.4",
     "storybook": "^8.6.12",
     "stylelint": "^16.19.1",

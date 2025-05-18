@@ -197,6 +197,10 @@
 
   - Определяет правила форматирования сообщений коммитов
 
+- **`stats.html`**: Визуализация бандла приложения
+
+  - Генерируется плагином rollup-plugin-visualizer и показывает структуру и размер бандла для оптимизации
+
 - **`README.md`**: Документация проекта
   - Содержит информацию о проекте, инструкции по установке и использованию
 
@@ -214,15 +218,16 @@
 - [Dayjs](https://day.js.org/) для работы с датами и временем (лёгкая альтернатива Moment.js)
 - [React Router](https://reactrouter.com/) для маршрутизации на стороне клиента
 - [Flaticon Uicons](https://www.npmjs.com/package/@flaticon/flaticon-uicons) для использования иконок из библиотеки Flaticon UIcons
-- [Vite](https://vite.dev/) для сборки приложения
 
 ### Зависимости для разработки
 
 Эти пакеты не влияют на работу самого приложения, но позволяют писать код быстрее и качественнее
 
+- [Vite](https://vite.dev/) для сборки приложения
 - [Vitest](https://vitest.dev/) для тестирования TypeScript кода
 - [Testing Library](https://testing-library.com/) для тестирования компонентов React
 - [Storybook](https://storybook.js.org/) для разработки и тестирования UI компонентов в изолированной среде
 - [ESLint](https://eslint.org/) для улучшения качества TS кода
 - [Stylelint](https://stylelint.io/) для улучшения качества CSS кода
+- [Rollup Plugin Visualizer]() для визуализации бандла приложения
 - [Husky](https://typicode.github.io/husky/) для проверки тестов, линтеров перед комитом
