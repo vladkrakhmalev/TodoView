@@ -15,7 +15,7 @@ export const ProjectSmallList: FC = () => {
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
 
-  const { data, isLoading } = useProjects()
+  const { data, isLoading } = useProjects(isOpen)
   const projects = data?.results || []
   const isEmpty = projects.length === 0 && !isLoading
   const isActive = location.pathname === routerConfig.projects

@@ -4,18 +4,12 @@ import { IProjectForm } from '../model/project.types'
 import { IUpdateProjectArgs } from './projectServices.types'
 import { useAuthQuery, useAuthMutation } from '@shared/config/tanstack-query'
 
-export const useProjects = () => {
+export const useProjects = (enabled: boolean = true) => {
   return useAuthQuery({
     queryKey: ['projects'],
-    queryFn: async () => {
-      try {
-        return await todoistApi.getProjects()
-      } catch (err) {
-        console.log(err)
-        throw err
-      }
-    },
+    queryFn: () => todoistApi.getProjects(),
     staleTime: 1000 * 60 * 15,
+    enabled,
   })
 }
 

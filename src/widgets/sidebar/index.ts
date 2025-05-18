@@ -1,1 +1,1 @@
-export { Sidebar } from './ui/sidebar/Sidebar'
+export { SidebarLazy } from './ui/sidebar/SidebarLazy'

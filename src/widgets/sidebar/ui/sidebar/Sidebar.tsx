@@ -12,7 +12,7 @@ import { SidebarSettings } from '../sidebar-settings/SidebarSettings'
 
 const isOpenSidebar = localStorage.getItem('isOpenSidebar') === 'true'
 
-export const Sidebar: FC = () => {
+const Sidebar: FC = () => {
   const [isOpen, setIsOpen] = useState(isOpenSidebar)
 
   const toggleSidebar = () => {
@@ -44,3 +44,5 @@ export const Sidebar: FC = () => {
     </div>
   )
 }
+
+export default Sidebar

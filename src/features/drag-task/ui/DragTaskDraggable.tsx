@@ -25,7 +25,7 @@ export const DragTaskDraggable: FC<IProps> = ({
   }
 
   const draggableTask = (
-    <i className='fi fi-sr-grip-dots-vertical' {...listeners} {...attributes} />
+    <i className='fi fi-rr-grip-dots-vertical' {...listeners} {...attributes} />
   )
 
   return (
