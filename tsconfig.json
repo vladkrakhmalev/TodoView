@@ -30,6 +30,5 @@
       "@shared/*": ["shared/*"]
     },
     "allowSyntheticDefaultImports": true
-  },
-  "include": ["src", "test"],
+  }
 }
