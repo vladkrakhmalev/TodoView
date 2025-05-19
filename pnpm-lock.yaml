@@ -123,6 +123,9 @@ importers:
       '@vitest/ui':
         specifier: ^3.1.1
         version: 3.1.1(vitest@3.1.1)
+      chromatic:
+        specifier: ^11.28.2
+        version: 11.28.2
       commitlint:
         specifier: ^19.8.1
         version: 19.8.1(@types/node@22.14.0)(typescript@5.7.3)
