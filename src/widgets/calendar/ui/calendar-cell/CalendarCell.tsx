@@ -1,16 +1,16 @@
-import { FC, useState } from 'react';
+import { FC, useState } from 'react'
 import './CalendarCell.css'
-import { CELL_HEIGHT } from '@shared/config/calendar';
-import { Task } from '@doist/todoist-api-typescript';
-import { AddTaskWrapper } from '@features/add-task';
-import { CompleteTask } from '@features/complete-task';
-import { UpdateTask } from '@features/update-task';
-import { DragTaskDraggable, DragTaskDroppable } from '@features/drag-task';
-import { ResizeWrapper } from '@features/resize-task';
+import { CELL_HEIGHT } from '@shared/config/calendar'
+import { Task } from '@doist/todoist-api-typescript'
+import { AddTaskWrapper } from '@features/add-task'
+import { CompleteTask } from '@features/complete-task'
+import { UpdateTask } from '@features/update-task'
+import { DragTaskDraggable, DragTaskDroppable } from '@features/drag-task'
+import { ResizeWrapper } from '@features/resize-task'
 
 interface IProps {
-  date: string,
-  time: string,
+  date: string
+  time: string
   tasks: Task[]
 }
 
@@ -20,18 +20,18 @@ export const CalendarCell: FC<IProps> = ({ date, time, tasks }) => {
   return (
     <div className='calendar-cell' style={{ height: `${CELL_HEIGHT}px` }}>
       <DragTaskDroppable id={`${date}_${time}`}>
-        {tasks.map(task =>
+        {tasks.map(task => (
           <UpdateTask key={task.id} task={task} isResize={isResize}>
             <DragTaskDraggable
               task={task}
-              completeTask={<CompleteTask taskId={task.id}/>}
-              resizeTask={<ResizeWrapper task={task} onResize={setIsResize}/>}
+              completeTask={<CompleteTask taskId={task.id} />}
+              resizeTask={<ResizeWrapper task={task} onResize={setIsResize} />}
             />
           </UpdateTask>
-        )}
+        ))}
       </DragTaskDroppable>
 
       <AddTaskWrapper date={date} time={time} />
     </div>
-  );
-};
+  )
+}

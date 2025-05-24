@@ -1,7 +1,13 @@
-import { FC, useState } from 'react';
-import { Button } from '@shared/ui/button';
-import { Modal } from '@shared/ui/modal';
-import { TaskForm, ITaskForm, useAddTask, convertFormToTask, } from '@entities/task';
+import { FC, useState } from 'react'
+import { Button } from '@shared/ui/button'
+import { Modal } from '@shared/ui/modal'
+import {
+  TaskForm,
+  ITaskForm,
+  useAddTask,
+  convertFormToTask,
+} from '@entities/task'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   long?: boolean
@@ -9,6 +15,7 @@ interface IProps {
 }
 
 export const AddTaskButton: FC<IProps> = ({ long = false, projectId }) => {
+  const { t } = useTranslation()
   const { mutateAsync: addTask, isPending } = useAddTask()
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -22,23 +29,25 @@ export const AddTaskButton: FC<IProps> = ({ long = false, projectId }) => {
     setIsOpen(false)
   }
 
-  return (<>
-    <Button
-      variant={long ? 'secondary' : 'primary'}
-      iconBefore='plus'
-      className='add-task'
-      fullWidth={long}
-      onClick={handlerOpen}
-    >
-      {long ? 'Добавить задачу' : ''}
-    </Button>
+  return (
+    <>
+      <Button
+        variant={long ? 'secondary' : 'primary'}
+        iconBefore='plus'
+        className='add-task'
+        fullWidth={long}
+        onClick={handlerOpen}
+      >
+        {long ? t('Добавить задачу') : ''}
+      </Button>
 
-    <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-      <TaskForm
-        title='Добавить задачу'
-        isLoading={isPending}
-        onSubmit={handlerSubmit}
-      />
-    </Modal>
-  </>)
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <TaskForm
+          title={t('Добавить задачу')}
+          isLoading={isPending}
+          onSubmit={handlerSubmit}
+        />
+      </Modal>
+    </>
+  )
 }

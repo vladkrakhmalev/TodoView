@@ -2,37 +2,52 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Button } from './Button'
 
-// TODO: добавить тесты на размеры
-
 describe('Button', () => {
-  it('should render button with text', () => {
+  it('should render button by default', () => {
     render(<Button>Click me</Button>)
-    expect(screen.getByRole('button')).toHaveTextContent('Click me')
+
+    expect(screen.getByTestId('button')).toHaveTextContent('Click me')
+    expect(screen.getByTestId('button')).toHaveClass('_secondary')
+    expect(screen.getByTestId('button')).toHaveClass('_medium')
   })
 
   it('should render button with primary variant', () => {
-    render(<Button variant="primary">Primary</Button>)
+    render(<Button variant='primary'>Primary</Button>)
     expect(screen.getByRole('button')).toHaveClass('button _primary')
   })
 
-  it('should render button with secondary variant by default', () => {
-    render(<Button>Secondary</Button>)
-    expect(screen.getByRole('button')).toHaveClass('button _secondary')
-  })
-
   it('should render button with danger variant', () => {
-    render(<Button variant="danger">Danger</Button>)
+    render(<Button variant='danger'>Danger</Button>)
     expect(screen.getByRole('button')).toHaveClass('button _danger')
   })
 
   it('should render button with icon before text', () => {
-    render(<Button iconBefore="check">With icon</Button>)
-    expect(screen.getByRole('button')).toContainElement(screen.getByTestId('icon-before'))
+    render(<Button iconBefore='check'>With icon</Button>)
+    expect(screen.getByRole('button')).toContainElement(
+      screen.getByTestId('icon-before')
+    )
   })
 
   it('should render button with icon after text', () => {
-    render(<Button iconAfter="check">With icon</Button>)
-    expect(screen.getByRole('button')).toContainElement(screen.getByTestId('icon-after'))
+    render(<Button iconAfter='check'>With icon</Button>)
+    expect(screen.getByRole('button')).toContainElement(
+      screen.getByTestId('icon-after')
+    )
+  })
+
+  it('should render button with small size', () => {
+    render(<Button size='small'>Small</Button>)
+    expect(screen.getByTestId('button')).toHaveClass('_small')
+  })
+
+  it('should render button with medium size by default', () => {
+    render(<Button>Medium</Button>)
+    expect(screen.getByTestId('button')).toHaveClass('_medium')
+  })
+
+  it('should render button with big size', () => {
+    render(<Button size='big'>Big</Button>)
+    expect(screen.getByTestId('button')).toHaveClass('_big')
   })
 
   it('should render button with full width', () => {
@@ -42,7 +57,9 @@ describe('Button', () => {
 
   it('should render loading spiner when isLoading is true', () => {
     render(<Button isLoading>Loading</Button>)
-    expect(screen.getByRole('button')).toContainElement(screen.getByTestId('spiner'))
+    expect(screen.getByRole('button')).toContainElement(
+      screen.getByTestId('spiner')
+    )
   })
 
   it('should be disabled when isLoading is true', () => {
@@ -56,7 +73,7 @@ describe('Button', () => {
   })
 
   it('should apply custom className', () => {
-    render(<Button className="custom-class">Custom class</Button>)
+    render(<Button className='custom-class'>Custom class</Button>)
     expect(screen.getByRole('button')).toHaveClass('custom-class')
   })
 
@@ -66,4 +83,4 @@ describe('Button', () => {
     screen.getByRole('button').click()
     expect(handleClick).toHaveBeenCalledTimes(1)
   })
-}) 
+})

@@ -1,11 +1,5 @@
-import { Calendar } from "@widgets/calendar"
-import { Sidebar } from "@widgets/sidebar"
-const CalendarPage = () => {
-  return (
-    <Calendar
-      sidebar={<Sidebar/>}
-    />
-  )
-}
+import { Calendar } from '@widgets/calendar'
+
+const CalendarPage = () => <Calendar />
 
 export default CalendarPage

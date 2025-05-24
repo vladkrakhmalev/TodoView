@@ -1,9 +1,14 @@
-import { Task, AddTaskArgs } from "@doist/todoist-api-typescript";
-import { getDueString, getDuration, getTimeByDuration, getTimeByString } from "@shared/lib/time"
-import dayjs from "@shared/config/dayjs";
-import { IDayWithTasks, ITaskForm, IWeekdayWithTasks } from "../model/task"
-import { IUpdateTask, ITaskFilter } from "../model/taskServices.d";
-import { TIMES_WITH_HALF } from "@shared/config/calendar";
+import { Task, AddTaskArgs } from '@doist/todoist-api-typescript'
+import {
+  getDueString,
+  getDuration,
+  getTimeByDuration,
+  getTimeByString,
+} from '@shared/lib/time'
+import dayjs from '@shared/config/dayjs'
+import { IDayWithTasks, ITaskForm, IWeekdayWithTasks } from '../model/task'
+import { IUpdateTask, ITaskFilter } from '../model/taskServices.d'
+import { TIMES_WITH_HALF } from '@shared/config/calendar'
 
 export const convertFormToTask = (form: ITaskForm): AddTaskArgs => {
   const { date, timeStart, timeEnd, ...rest } = form
@@ -13,13 +18,13 @@ export const convertFormToTask = (form: ITaskForm): AddTaskArgs => {
       dueString: getDueString(date, timeStart),
       duration: getDuration(timeStart, timeEnd),
       durationUnit: 'minute',
-      ...rest
+      ...rest,
     }
   }
 
   return {
     dueString: getDueString(date, timeStart),
-    ...rest
+    ...rest,
   }
 }
 
@@ -34,25 +39,30 @@ export const convertTaskToForm = (task: Task): ITaskForm => {
   }
 }
 
-export const convertDndToTask = (taskId: number | string, activeDroppableId: string): IUpdateTask => {
+export const convertDndToTask = (
+  taskId: number | string,
+  activeDroppableId: string
+): IUpdateTask => {
   const [date, time] = activeDroppableId.split('_')
   const dueString = getDueString(date, time)
-  
+
   return {
     id: String(taskId),
     data: { dueString },
   }
 }
 
-export const convertResizeToTask = (duration: number, task: Task): IUpdateTask => {
-
+export const convertResizeToTask = (
+  duration: number,
+  task: Task
+): IUpdateTask => {
   return {
     id: task.id,
     data: {
       ...task,
       duration: duration,
       durationUnit: 'minute',
-    }
+    },
   }
 }
 
@@ -73,7 +83,7 @@ export const getWeekdaysWithTasks = (tasks: Task[] = []): IWeekdayWithTasks => {
       createEmptyDay(), // Пт
       createEmptyDay(), // Сб
       createEmptyDay(), // Вс
-    ]
+    ],
   }
 
   tasks.forEach(task => {

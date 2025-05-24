@@ -1,49 +1,54 @@
-import { createBrowserRouter } from "react-router"
-import { IRoute } from "./routerTypes"
-import { routerConfig as config } from "@shared/config/router"
-import { MainLayout } from "@app/layouts/main-layout"
-import { CalendarPageLazy } from "@pages/calendar"
-import { LoginPageLazy } from "@pages/login"
-import { RedirectLoginPageLazy } from "@pages/redirect-login"
-import { NotFoundPageLazy } from "@pages/not-found"
-import { TodayPageLazy } from "@pages/today"
-import { ProjectPageLazy } from "@pages/project"
-import { ProjectsPageLazy } from "@pages/projects"
+import { createBrowserRouter } from 'react-router'
+import { IRoute } from './routerTypes'
+import { routerConfig as config } from '@shared/config/router'
+import { MainLayout } from '@app/layouts/main-layout'
+import { CalendarPageLazy } from '@pages/calendar'
+import { LoginPageLazy } from '@pages/login'
+import { RedirectLoginPageLazy } from '@pages/redirect-login'
+import { NotFoundPageLazy } from '@pages/not-found'
+import { TodayPageLazy } from '@pages/today'
+import { ProjectPageLazy } from '@pages/project'
+import { ProjectsPageLazy } from '@pages/projects'
+import { HomePageLazy } from '@pages/home'
 
 const routes: IRoute[] = [
   {
     path: config.login,
-    element: <LoginPageLazy/>,
+    element: <LoginPageLazy />,
   },
   {
     path: config.redirectLogin,
-    element: <RedirectLoginPageLazy/>,
+    element: <RedirectLoginPageLazy />,
   },
   {
-    element: <MainLayout/>,
+    element: <MainLayout />,
     children: [
       {
+        path: config.home,
+        element: <HomePageLazy />,
+      },
+      {
         path: config.today,
-        element: <TodayPageLazy/>,
+        element: <TodayPageLazy />,
       },
       {
         path: config.calendar,
-        element: <CalendarPageLazy/>,
+        element: <CalendarPageLazy />,
       },
       {
         path: config.projects,
-        element: <ProjectsPageLazy/>,
+        element: <ProjectsPageLazy />,
       },
       {
         path: config.project,
-        element: <ProjectPageLazy/>,
+        element: <ProjectPageLazy />,
       },
-    ]
+    ],
   },
   {
     path: '*',
     element: <NotFoundPageLazy />,
-  }
+  },
 ]
 
 export const router = createBrowserRouter(routes)

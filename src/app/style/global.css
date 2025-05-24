@@ -9,3 +9,14 @@
 :root {
   --border-radius: 10px;
 }
+
+#app {
+  min-height: 100vh;
+}
+
+button {
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: inherit;
+}

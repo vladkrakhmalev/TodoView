@@ -1,5 +1,5 @@
-import { ProjectList } from "@widgets/project-list"
+import { ProjectList } from '@widgets/project-list'
 
-const ProjectsPage = () => <ProjectList/>
+const ProjectsPage = () => <ProjectList />
 
 export default ProjectsPage

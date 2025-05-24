@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+import { lazy } from 'react'
 
-export const NotFoundPageLazy = lazy(() => import('./NotFoundPage'));
+export const NotFoundPageLazy = lazy(() => import('./NotFoundPage'))

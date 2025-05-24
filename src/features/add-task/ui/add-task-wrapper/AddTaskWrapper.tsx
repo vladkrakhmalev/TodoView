@@ -1,9 +1,15 @@
-import { FC, useState } from 'react';
+import { FC, useState } from 'react'
 import './AddTaskWrapper.css'
-import { Modal } from '@shared/ui/modal';
-import { TaskForm, ITaskForm, useAddTask, convertFormToTask } from '@entities/task';
-import dayjs from '@shared/config/dayjs';
-import clsx from 'clsx';
+import { Modal } from '@shared/ui/modal'
+import {
+  TaskForm,
+  ITaskForm,
+  useAddTask,
+  convertFormToTask,
+} from '@entities/task'
+import dayjs from '@shared/config/dayjs'
+import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   date: string
@@ -11,6 +17,7 @@ interface IProps {
 }
 
 export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
+  const { t } = useTranslation()
   const { mutateAsync: addTask, isPending } = useAddTask()
 
   const [defaultForm, setDefaultForm] = useState<Partial<ITaskForm>>({ date })
@@ -19,7 +26,11 @@ export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
 
   const handlerOpen = () => {
     const timeEnd = dayjs(time, 'HH:mm').add(30, 'minute').format('HH:mm')
-    setDefaultForm(defaultForm => ({ ...defaultForm, timeStart: time, timeEnd }))
+    setDefaultForm(defaultForm => ({
+      ...defaultForm,
+      timeStart: time,
+      timeEnd,
+    }))
     setShowTask(true)
     setIsOpen(true)
   }
@@ -36,16 +47,21 @@ export const AddTaskWrapper: FC<IProps> = ({ date, time }) => {
     handlerClose()
   }
 
-  return (<>
-    <div className={clsx('add-task-wrapper', showTask && '_shadow')} onClick={handlerOpen}/>
-
-    <Modal isOpen={isOpen} onClose={handlerClose}>
-      <TaskForm
-        title='Добавить задачу'
-        defaultForm={defaultForm}
-        isLoading={isPending}
-        onSubmit={handlerSubmit}
+  return (
+    <>
+      <button
+        className={clsx('add-task-wrapper', showTask && '_shadow')}
+        onClick={handlerOpen}
       />
-    </Modal>
-  </>)
-};
+
+      <Modal isOpen={isOpen} onClose={handlerClose}>
+        <TaskForm
+          title={t('Добавить задачу')}
+          defaultForm={defaultForm}
+          isLoading={isPending}
+          onSubmit={handlerSubmit}
+        />
+      </Modal>
+    </>
+  )
+}

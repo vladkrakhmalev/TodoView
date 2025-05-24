@@ -1,4 +1,4 @@
-import { TodoistApi } from "@doist/todoist-api-typescript"
+import { TodoistApi } from '@doist/todoist-api-typescript'
 
 const accessToken = localStorage.getItem('accessToken') || ''
 

@@ -17,7 +17,9 @@
   color: var(--text-primary);
   font-size: 16px;
   line-height: 1.4;
+  /* stylelint-disable */
   word-break: break-word;
+  /* stylelint-enable */
   flex-grow: 1;
   margin-right: 8px;
 }
@@ -86,9 +88,11 @@
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.4;
   }
+
   100% {
     opacity: 1;
   }

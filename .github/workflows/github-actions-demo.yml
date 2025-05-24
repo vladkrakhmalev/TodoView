@@ -1,9 +1,7 @@
-name: Deploy 
+name: Deploy
 
 on:
   push:
-    branches: ['main']
-  pull_request:
     branches: ['main']
   workflow_dispatch:
 
@@ -37,14 +35,13 @@ jobs:
       - name: Test
         run: pnpm test
         if: always()
-      - name: Create .env file
-        run: |
-          echo "VITE_TODOIST_CLIENT_ID=${{ secrets.TODOIST_CLIENT_ID }}" >> .env
-          echo "VITE_TODOIST_CLIENT_SECRET=${{ secrets.TODOIST_CLIENT_SECRET }}" >> .env
-          echo "VITE_TODOIST_REDIRECT_URI=${{ secrets.TODOIST_REDIRECT_URI }}" >> .env
-          echo "VITE_TODOIST_STATE_STRING=${{ secrets.TODOIST_STATE_STRING }}" >> .env
       - name: Build
         run: pnpm build
+        env:
+          VITE_TODOIST_CLIENT_ID: ${{ secrets.TODOIST_CLIENT_ID }}
+          VITE_TODOIST_CLIENT_SECRET: ${{ secrets.TODOIST_CLIENT_SECRET }}
+          VITE_TODOIST_REDIRECT_URI: ${{ secrets.TODOIST_REDIRECT_URI }}
+          VITE_TODOIST_STATE_STRING: ${{ secrets.TODOIST_STATE_STRING }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

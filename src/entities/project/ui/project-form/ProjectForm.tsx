@@ -1,8 +1,9 @@
-import { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react';
+import { FC, FormEvent, MouseEvent, useEffect, useRef, useState } from 'react'
 import './ProjectForm.css'
-import { Button } from '@shared/ui/button';
-import { Input } from '@shared/ui/input';
-import { IProjectForm } from '../../model/project.types';
+import { Button } from '@shared/ui/button'
+import { Input } from '@shared/ui/input'
+import { IProjectForm } from '../../model/project.types'
+import { useTranslation } from 'react-i18next'
 
 interface IProps {
   title: string
@@ -17,21 +18,19 @@ const initialForm: IProjectForm = {
   name: '',
 }
 
-export const ProjectForm: FC<IProps> = (props) => {
-  const {
-    title,
-    defaultForm,
-    isLoading,
-    isDeleting,
-    onSubmit,
-    onDelete,
-  } = props
-  
-  const [form, setForm] = useState<IProjectForm>({ ...initialForm, ...defaultForm })
+export const ProjectForm: FC<IProps> = props => {
+  const { t } = useTranslation()
+  const { title, defaultForm, isLoading, isDeleting, onSubmit, onDelete } =
+    props
+
+  const [form, setForm] = useState<IProjectForm>({
+    ...initialForm,
+    ...defaultForm,
+  })
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   const handlerChange = (value: string, field: keyof IProjectForm) => {
-    setForm({...form, [field]: value})
+    setForm({ ...form, [field]: value })
   }
 
   const handlerSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -60,28 +59,30 @@ export const ProjectForm: FC<IProps> = (props) => {
         inputRef={firstInputRef}
         value={form.name}
         required
-        placeholder='Введите название проекта'
-        label='Название'
-        onUpdate={(value) => handlerChange(value, 'name')}
+        placeholder={t('Введите название проекта')}
+        label={t('Название')}
+        onUpdate={value => handlerChange(value, 'name')}
       />
 
-      <div className="task-form__buttons">
+      <div className='project-form__buttons'>
         <Button
           isLoading={isLoading}
           iconBefore='disk'
           variant='primary'
           fullWidth
-        >Сохранить</Button>
+        >
+          {t('Сохранить')}
+        </Button>
 
-        {onDelete && 
+        {onDelete && (
           <Button
             isLoading={isDeleting}
             iconBefore='trash'
             variant='danger'
             onClick={handlerDangerClick}
           />
-        }
+        )}
       </div>
     </form>
-  );
-};
+  )
+}

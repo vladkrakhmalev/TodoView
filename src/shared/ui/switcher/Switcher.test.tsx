@@ -6,7 +6,7 @@ describe('Switcher', () => {
   const options = [
     { value: 'option1', title: 'Option 1' },
     { value: 'option2', title: 'Option 2' },
-    { value: 'option3', title: 'Option 3' }
+    { value: 'option3', title: 'Option 3' },
   ]
 
   it('should render all options', () => {
@@ -17,7 +17,9 @@ describe('Switcher', () => {
   })
 
   it('should set default value when provided', () => {
-    render(<Switcher options={options} defaultValue="option2" onChange={vi.fn()} />)
+    render(
+      <Switcher options={options} defaultValue='option2' onChange={vi.fn()} />
+    )
     const option2 = screen.getByText('Option 2')
     expect(option2.parentElement).toHaveClass('switcher__item')
     expect(option2.parentElement).toHaveClass('_active')
@@ -35,12 +37,12 @@ describe('Switcher', () => {
   it('should handle option selection', () => {
     const handleChange = vi.fn()
     render(<Switcher options={options} onChange={handleChange} />)
-    
+
     const option2 = screen.getByText('Option 2')
     act(() => {
       option2.click()
     })
-    
+
     expect(handleChange).toHaveBeenCalledWith(options[1])
     expect(option2.parentElement).toHaveClass('switcher__item')
     expect(option2.parentElement).toHaveClass('_active')
@@ -49,16 +51,16 @@ describe('Switcher', () => {
   it('should update active state when selecting different options', () => {
     const handleChange = vi.fn()
     render(<Switcher options={options} onChange={handleChange} />)
-    
+
     const option1 = screen.getByText('Option 1')
     const option3 = screen.getByText('Option 3')
-    
+
     act(() => {
       option1.click()
     })
     expect(option1.parentElement).toHaveClass('switcher__item')
     expect(option1.parentElement).toHaveClass('_active')
-    
+
     act(() => {
       option3.click()
     })
@@ -72,4 +74,16 @@ describe('Switcher', () => {
     render(<Switcher options={[]} onChange={vi.fn()} />)
     expect(screen.getByTestId('switcher')).toBeEmptyDOMElement()
   })
-}) 
+
+  it('should be disabled when disabled prop is true', () => {
+    render(<Switcher options={options} onChange={vi.fn()} disabled />)
+    const option1 = screen.getByText('Option 1')
+
+    act(() => {
+      option1.click()
+    })
+
+    expect(option1.parentElement).not.toHaveClass('_active')
+    expect(screen.getByTestId('switcher')).toHaveClass('_disabled')
+  })
+})
